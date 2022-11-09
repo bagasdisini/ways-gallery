@@ -176,7 +176,7 @@ function EditProfile() {
               placeholder="Attach bestArt"
               aria-label="bestArt"
               aria-describedby="basic-addon1"
-              type="file2"
+              type="file"
               name="bestArt"
               onChange={handleChange}
             />
