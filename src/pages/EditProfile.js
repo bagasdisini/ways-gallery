@@ -57,7 +57,7 @@ function EditProfile() {
       ...form,
       [e.target.name]:
         (e.target.type === "file" ? e.target.files[0] : e.target.value,
-        e.target.type === "file2" ? e.target.files[0] : e.target.value),
+        e.target.type === "file" ? e.target.files[1] : e.target.value),
     });
 
     if (e.target.type == "file") {
@@ -65,8 +65,8 @@ function EditProfile() {
       setPreview(url);
     }
 
-    if (e.target.type == "file2") {
-      const url2 = URL.createObjectURL(e.target.files[0]);
+    if (e.target.type == "file") {
+      const url2 = URL.createObjectURL(e.target.files[1]);
       setPreview(url2);
     }
   };
