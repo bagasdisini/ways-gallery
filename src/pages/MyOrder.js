@@ -10,7 +10,7 @@ import NavBar from "./NavBar";
 
 function Transaction() {
   useEffect(() => {
-    document.title = "Income Transaction";
+    document.title = "Order";
   }, []);
 
   const [state] = useContext(UserContext);

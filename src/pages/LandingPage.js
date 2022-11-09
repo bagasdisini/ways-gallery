@@ -1,11 +1,9 @@
 import Landing123 from "../assets/navbar.png";
-import Line from "../assets/garis.png";
 import Landing from "../assets/landing.png";
 import Landing1 from "../assets/landing12.png";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API, setAuthToken } from "../config/api";
-import { useQuery } from "react-query";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { Alert } from "react-bootstrap";
@@ -40,13 +38,10 @@ function Page() {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    fullName: "",
-    gender: "",
-    phone: "",
-    role: "",
+    name: "",
   });
 
-  const { fullName, email, password, gender, phone, role } = form;
+  const { name, email, password } = form;
 
   const handleChange = (e) => {
     setForm({
@@ -85,7 +80,7 @@ function Page() {
         payload,
       });
 
-      navigate("/");
+      navigate("/home");
       setShow1(false);
     } catch (error) {
       const alert11 = <Alert variant="danger">Email/Password Salah!</Alert>;
@@ -133,11 +128,11 @@ function Page() {
             <Form.Group className="mb-3">
               <Form.Control
                 type="text"
-                placeholder="Full Name"
+                placeholder="Name"
                 style={{ backgroundColor: "#F4F4F4" }}
-                value={fullName}
+                value={name}
                 onChange={handleChange}
-                name="fullName"
+                name="name"
               />
             </Form.Group>
             <Button
@@ -168,7 +163,7 @@ function Page() {
       <Modal show={show1} onHide={handleClose1}>
         <Modal.Body>
           {message && message}
-          <Form className="p-3" /*onSubmit={(e) => handleSubmitLogin.mutate(e)}*/>
+          <Form className="p-3" onSubmit={(e) => handleSubmitLogin.mutate(e)}>
             <h3 className="mb-4 fw-bold" style={{ color: "#2FC4B2" }}>
               Login
             </h3>

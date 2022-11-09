@@ -24,7 +24,7 @@ function EditProfile() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    document.title = "Edit Profile";
+    document.title = "Upload Post";
   }, []);
 
   const wrapperRef = useRef(null);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: process.env.REACT_APP_BASEURL,
+  baseURL: "https://waysgallery-app.herokuapp.com/",
 });
 
 export const setAuthToken = (token) => {
