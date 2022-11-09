@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { API } from "../config/api";
 import NavBar from "./NavBar";
-import BK from "../assets/BK.png";
-import Mockup from "../assets/mockup.png";
+import Hire from "./Hire";
 import Detail from "../assets/detail.png";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
@@ -13,6 +12,10 @@ import { UserContext } from "../context/UserContext";
 function EditProfile() {
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
+
+  const navigateHire = () => {
+    navigate("/hire");
+  };
 
   useEffect(() => {
     document.title = "Profile";
@@ -24,6 +27,8 @@ function EditProfile() {
     const response = await API.get("/user/" + idid);
     return response.data.data;
   });
+
+  console.log(state);
 
   return (
     <div>
@@ -46,13 +51,14 @@ function EditProfile() {
           className="mt-5"
         >
           <img
-            src={BK}
+            src={state.user.image === "" ? state.user.image : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"}
             alt="a"
-            style={{ position: "relative" }}
+            style={{ position: "relative", objectFit:"cover", borderRadius:"50px" }}
             width="60px"
+            height="60px"
           ></img>
-          <h5 className="mt-4 fw-bold">Geralt</h5>
-          <h3 className="fw-bold mt-4">Hey, Thanks for Looking</h3>
+          <h5 className="mt-4 fw-bold">{state.user.name}</h5>
+          <h3 className="fw-bold mt-4">{state.user.greeting !== "" ? state.user.greeting : "Welcome to my profile!"}</h3>
           <div style={{ position: "relative" }} className="mt-4 ">
             <Button
               style={{
@@ -74,13 +80,14 @@ function EditProfile() {
                 border: "none",
               }}
               className="px-2 py-1"
+              onClick={navigateHire}
             >
               Hire{" "}
             </Button>
           </div>
         </div>
         <img
-          src={state.bestart === "" ? state.bestart : "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"}
+          src={state.user.bestart === "" ? state.user.bestart : "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"}
           alt="a"
           style={{ position: "relative", objectFit:"cover", borderRadius:"15px" }}
           width="500px"
@@ -95,7 +102,7 @@ function EditProfile() {
           position: "relative",
         }}
       >
-        <p className="fw-bold">Geralt Works</p>
+        <p className="fw-bold">{state.user.name}'s Works</p>
       </div>
     </div>
   );
