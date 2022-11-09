@@ -103,8 +103,8 @@ function EditProfile() {
             </div>
             <img
               src={
-                state.user.bestart === ""
-                  ? state.user.bestart
+                state.user.bestArt === ""
+                  ? state.user.bestArt
                   : "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"
               }
               alt="a"
@@ -197,8 +197,8 @@ function EditProfile() {
             </div>
             <img
               src={
-                user.bestart === ""
-                  ? user.bestart
+                user.bestArt === ""
+                  ? user.bestArt
                   : "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"
               }
               alt="a"

@@ -5,51 +5,29 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { API } from "../config/api";
 import NavBar from "./NavBar";
-import BK from "../assets/BK.png";
 import Cam from "../assets/cam.png";
-import Mockup from "../assets/mockup.png";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 function EditProfile() {
   const [state, dispatch] = useContext(UserContext);
+  const [preview, setPreview] = useState(null);
+  const [preview1, setPreview1] = useState(null);
   const navigate = useNavigate();
 
-  const [show, setShow] = useState(false);
-  const [preview, setPreview] = useState(null);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const navigateProfile = () => {
+    navigate("/my-profile");
+  };
 
   useEffect(() => {
     document.title = "Edit Profile";
   }, []);
 
-  const wrapperRef = useRef(null);
-
-  const [draggable] = useState(true);
-  const [position, setPosition] = useState([-6.3818149, 106.7495821]);
-  const markerRef = useRef(null);
-  const eventHandlers = useMemo(
-    () => ({
-      dragend() {
-        const marker = markerRef.current;
-        if (marker != null) {
-          setPosition(marker.getLatLng());
-        }
-      },
-    }),
-    []
-  );
-
-  var positionStr = `${position.lat}, ${position.lng}`;
-
   const [form, setForm] = useState({
-    fullName: "",
+    name: "",
     image: "",
-    email: "",
-    phone: "",
-    location: positionStr,
+    bestArt: "",
+    greeting: "",
   });
 
   const idid = state?.user.id;
@@ -59,31 +37,38 @@ function EditProfile() {
     return response.data.data;
   });
 
+  console.log(user);
+
   useEffect(() => {
     if (user) {
       setForm({
         ...form,
-        fullName: user.fullName,
-        email: user.email,
+        name: user.name,
         image: user.image,
-        phone: user.phone,
-        location: positionStr,
+        bestArt: user.bestArt,
+        greeting: user.greeting,
       });
     }
   }, [user]);
 
-  // const handleChange = (e) => {
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]:
-  //       e.target.type === "file" ? e.target.files[0] : e.target.value,
-  //   });
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        (e.target.type === "file" ? e.target.files[0] : e.target.value,
+        e.target.type === "file2" ? e.target.files[0] : e.target.value),
+    });
 
-  //   if (e.target.type == "file") {
-  //     const url = URL.createObjectURL(e.target.files[0]);
-  //     setPreview(url);
-  //   }
-  // };
+    if (e.target.type == "file") {
+      const url = URL.createObjectURL(e.target.files[0]);
+      setPreview(url);
+    }
+
+    if (e.target.type == "file2") {
+      const url2 = URL.createObjectURL(e.target.files[0]);
+      setPreview(url2);
+    }
+  };
 
   const handleSubmit = async (e) => {
     try {
@@ -93,10 +78,11 @@ function EditProfile() {
       if (preview) {
         formData.set("image", form?.image, form?.image.name);
       }
-      formData.set("fullName", form.fullName);
-      formData.set("email", form.email);
-      formData.set("phone", form.phone);
-      formData.set("location", positionStr);
+      if (preview1) {
+        formData.set("bestArt", form?.bestArt, form?.bestArt.name);
+      }
+      formData.set("name", form.name);
+      formData.set("greeting", form.greeting);
 
       const response = await API.patch(`/user/${idid}`, formData);
 
@@ -161,6 +147,9 @@ function EditProfile() {
               type="text"
               placeholder="Greeting"
               style={{ backgroundColor: "#F4F4F4" }}
+              value={form.greeting}
+              name="greeting"
+              onChange={handleChange}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -168,17 +157,43 @@ function EditProfile() {
               type="text"
               placeholder="Full Name"
               style={{ backgroundColor: "#F4F4F4" }}
+              value={form.name}
+              name="name"
+              onChange={handleChange}
             />
           </Form.Group>
           <Button
-              type="submit"
-              style={{ width: "20%", background: "#2FC4B2", border: "none" }}
-              className="mt-3"
-            >
-              Save
-            </Button>
+            type="submit"
+            style={{ width: "20%", background: "#2FC4B2", border: "none" }}
+            className="mt-3"
+            onClick={(e) => handleSubmit(e)}
+          >
+            Save
+          </Button>
         </div>
       </div>
+      {preview && (
+        <div className="mb-3">
+          <img
+            src={preview}
+            style={{
+              width: "140px",
+              height: "140px",
+              objectFit: "cover",
+            }}
+            alt={preview}
+          />
+          <img
+            src={preview1}
+            style={{
+              width: "140px",
+              height: "140px",
+              objectFit: "cover",
+            }}
+            alt={preview1}
+          />
+        </div>
+      )}
     </div>
   );
 }
