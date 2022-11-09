@@ -59,6 +59,10 @@ function Page() {
       const alert = <Alert variant="success">Berhasil register!</Alert>;
 
       setMessage(alert);
+
+      setShow(false);
+      setShow1(true);
+
     } catch (e) {
       console.log(e);
       const alert = <Alert variant="danger">Register gagal!</Alert>;

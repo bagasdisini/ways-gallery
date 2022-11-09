@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import toRupiah from "@develoka/angka-rupiah-js";
 import NavBar from "./NavBar";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Transaction() {
   useEffect(() => {
@@ -30,8 +31,25 @@ function Transaction() {
         className="d-flex justify-content-center align-items-center mx-auto"
         style={{ marginTop: "10px" }}
       >
-        <div className="m-5" style={{ width: "90%" }}>
+        <div style={{ width: "90%" }}>
           <div>
+            <Dropdown className="my-4">
+              <Dropdown.Toggle
+                style={{
+                  backgroundColor: "#E7E7E7",
+                  color: "black",
+                  borderColor: "#E7E7E7",
+                }}
+                className="px-3"
+              >
+                Transaction &ensp;
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">My Order</Dropdown.Item>
+                <Dropdown.Item href="#/action-1">My Offer</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             <div>
               <Table bordered hover style={{ border: "1px" }}>
                 <thead style={{ backgroundColor: "#E5E5E5" }}>

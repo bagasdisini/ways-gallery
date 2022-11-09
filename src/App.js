@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import Hire from "./pages/Hire";
 import ProfileUser from "./pages/ProfileUser";
+import MyProfile from "./pages/MyProfile";
 import SendProject from "./pages/SendProject";
 import ViewProject from "./pages/ViewProject";
 import {
@@ -16,7 +17,7 @@ import {
   Routes,
 } from "react-router-dom";
 import React from "react";
-import { CartProvider, useCart } from "react-use-cart";
+import { CartProvider } from "react-use-cart";
 import { API, setAuthToken } from "./config/api";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./context/UserContext";
@@ -56,14 +57,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Page />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/detail-post" element={<Detail />} />
-        <Route path="/profile-user" element={<ProfileUser />} />
+        <Route path="/detail-post/:id" element={<Detail />} />
+        <Route path="/profile-user/:id" element={<ProfileUser />} />
+        <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/edit-user" element={<EditProfile />} />
         <Route path="/hire" element={<Hire />} />
         <Route path="/upload-post" element={<Upload />} />
         <Route path="/order" element={<MyOrder />} />
         <Route path="/send-project" element={<SendProject />} />
-        <Route path="/view-project" element={<ViewProject />} />
+        <Route path="/view-project/:id" element={<ViewProject />} />
       </Routes>
     </CartProvider>
   );

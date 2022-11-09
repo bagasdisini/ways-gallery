@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API, setAuthToken } from "../config/api";
 import Form from "react-bootstrap/Form";
-import { Alert } from "react-bootstrap";
-import { useMutation } from "react-query";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -66,9 +64,7 @@ function Page() {
 
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Today</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">7 Days</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">30 Days</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Show All</Dropdown.Item>
+              <Dropdown.Item href="#/action-1">Following</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
@@ -77,6 +73,7 @@ function Page() {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="basic-addon1"
+              style={{ backgroundColor:"#E7E7E7", borderStyle:"none", borderRadius:"6px" }}
             />
           </InputGroup>
         </div>

@@ -16,7 +16,7 @@ function Navigation() {
   const navigate = useNavigate();
 
   const navigateProfile = () => {
-    navigate("/profile-user");
+    navigate("/my-profile");
   };
 
   const navigateOrder = () => {
@@ -86,7 +86,7 @@ function Navigation() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={navigateProfile}>
+            <Dropdown.Item  onClick={navigateProfile}>
               <img
                 src={IconProfile}
                 alt="PP"
