@@ -141,17 +141,34 @@ function EditProfile() {
               </div>
             )
           ) : (
-            <div
+            <label
+              htmlFor="bestart"
               style={{
-                border: "2px dashed grey",
                 width: "100%",
                 height: "400px",
                 borderRadius: "20px",
               }}
-              className="d-flex justify-content-center align-items-center"
             >
-              <p>Upload Best Your Art</p>
-            </div>
+              <div
+                style={{
+                  border: "2px dashed grey",
+                  width: "100%",
+                  height: "400px",
+                  borderRadius: "20px",
+                }}
+                className="d-flex justify-content-center align-items-center"
+                htmlFor="bestart"
+              >
+                <input
+                  type="file"
+                  id="bestart"
+                  name="bestArt"
+                  hidden
+                  onChange={handleChange1}
+                />
+                <p>Upload Best Your Art</p>
+              </div>
+            </label>
           )}
         </div>
         <div
@@ -174,15 +191,29 @@ function EditProfile() {
               </div>
             )
           ) : (
-            <div
+            <label
+              htmlFor="image"
               style={{
-                border: "2px dashed grey",
                 borderRadius: "100px",
               }}
-              className="p-5"
             >
-              <img src={Cam} width="50px"></img>
-            </div>
+              <div
+                style={{
+                  border: "2px dashed grey",
+                  borderRadius: "100px",
+                }}
+                className="p-5"
+              >
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  hidden
+                  onChange={handleChange}
+                />
+                <img src={Cam} width="50px"></img>
+              </div>
+            </label>
           )}
 
           <Form.Group className="mb-3 mt-4">
@@ -205,25 +236,6 @@ function EditProfile() {
               onChange={handleChange}
             />
           </Form.Group>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="image"
-              onChange={handleChange}
-            />
-          </InputGroup>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="bestArt"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="bestArt"
-              onChange={handleChange1}
-            />
-          </InputGroup>
-
           <Button
             type="submit"
             style={{ width: "20%", background: "#2FC4B2", border: "none" }}

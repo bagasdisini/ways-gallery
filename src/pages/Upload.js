@@ -137,7 +137,7 @@ function EditProfile() {
         payload,
       });
 
-      navigate("/my-profile");
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -175,18 +175,34 @@ function EditProfile() {
               </div>
             )
           ) : (
-            <div
+            <label
+              htmlFor="image1"
               style={{
-                border: "2px dashed grey",
                 width: "100%",
                 height: "400px",
                 borderRadius: "20px",
               }}
-              className="d-flex flex-column justify-content-center align-items-center"
             >
-              <img src={Upload} alt="aw" width="150px"></img>
-              <p>Browse to choose a file</p>
-            </div>
+              <div
+                style={{
+                  border: "2px dashed grey",
+                  width: "100%",
+                  height: "400px",
+                  borderRadius: "20px",
+                }}
+                className="d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src={Upload} alt="aw" width="150px"></img>
+                <p>Browse to choose a file</p>
+                <input
+                  type="file"
+                  id="image1"
+                  name="image1"
+                  hidden
+                  onChange={handleChange}
+                />
+              </div>
+            </label>
           )}
 
           <div className="d-flex justify-content-evenly">
@@ -196,7 +212,7 @@ function EditProfile() {
                   <img
                     src={preview2}
                     style={{
-                      width: "100%",
+                      width: "90px",
                       height: "90px",
                       objectFit: "cover",
                       borderRadius: "20px",
@@ -206,17 +222,34 @@ function EditProfile() {
                 </div>
               )
             ) : (
-              <div
+              <label
+                htmlFor="image2"
                 style={{
                   border: "2px dashed grey",
                   width: "23%",
                   height: "90px",
                   borderRadius: "20px",
                 }}
-                className="d-flex flex-column justify-content-center align-items-center mt-2"
+                className="mt-2"
               >
-                <img src={Plus} alt="aw" width="30px"></img>
-              </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    borderRadius: "20px",
+                  }}
+                  className="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img src={Plus} alt="aw" width="30px"></img>
+                  <input
+                    type="file"
+                    id="image2"
+                    name="image2"
+                    hidden
+                    onChange={handleChange2}
+                  />
+                </div>
+              </label>
             )}
 
             {preview3 ? (
@@ -235,17 +268,35 @@ function EditProfile() {
                 </div>
               )
             ) : (
-              <div
+              <label
+                htmlFor="image3"
                 style={{
                   border: "2px dashed grey",
                   width: "23%",
                   height: "90px",
+                  width: "90px",
                   borderRadius: "20px",
                 }}
-                className="d-flex flex-column justify-content-center align-items-center mt-2"
+                className="mt-2"
               >
-                <img src={Plus} alt="aw" width="30px"></img>
-              </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    borderRadius: "20px",
+                  }}
+                  className="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img src={Plus} alt="aw" width="30px"></img>
+                  <input
+                    type="file"
+                    id="image3"
+                    name="image3"
+                    hidden
+                    onChange={handleChange3}
+                  />
+                </div>
+              </label>
             )}
 
             {preview4 ? (
@@ -264,17 +315,35 @@ function EditProfile() {
                 </div>
               )
             ) : (
-              <div
+              <label
+                htmlFor="image4"
                 style={{
                   border: "2px dashed grey",
                   width: "23%",
                   height: "90px",
+                  width: "90px",
                   borderRadius: "20px",
                 }}
-                className="d-flex flex-column justify-content-center align-items-center mt-2"
+                className="mt-2"
               >
-                <img src={Plus} alt="aw" width="30px"></img>
-              </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    borderRadius: "20px",
+                  }}
+                  className="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img src={Plus} alt="aw" width="30px"></img>
+                  <input
+                    type="file"
+                    id="image4"
+                    name="image4"
+                    hidden
+                    onChange={handleChange4}
+                  />
+                </div>
+              </label>
             )}
 
             {preview5 ? (
@@ -293,17 +362,34 @@ function EditProfile() {
                 </div>
               )
             ) : (
-              <div
+              <label
+                htmlFor="image5"
                 style={{
                   border: "2px dashed grey",
                   width: "23%",
                   height: "90px",
                   borderRadius: "20px",
                 }}
-                className="d-flex flex-column justify-content-center align-items-center mt-2"
+                className="mt-2"
               >
-                <img src={Plus} alt="aw" width="30px"></img>
-              </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    borderRadius: "20px",
+                  }}
+                  className="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img src={Plus} alt="aw" width="30px"></img>
+                  <input
+                    type="file"
+                    id="image5"
+                    name="image5"
+                    hidden
+                    onChange={handleChange5}
+                  />
+                </div>
+              </label>
             )}
           </div>
         </div>
@@ -332,51 +418,6 @@ function EditProfile() {
               onChange={handleChange}
             />
           </Form.Group>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="image1"
-              onChange={handleChange}
-            />
-          </InputGroup>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="image2"
-              onChange={handleChange2}
-            />
-          </InputGroup>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="image3"
-              onChange={handleChange3}
-            />
-          </InputGroup>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="image4"
-              onChange={handleChange4}
-            />
-          </InputGroup>
-          <InputGroup className="mb-3" style={{ width: "51%" }}>
-            <Form.Control
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="image5"
-              onChange={handleChange5}
-            />
-          </InputGroup>
           <div
             className="d-flex justify-content-center"
             style={{ width: "100%" }}

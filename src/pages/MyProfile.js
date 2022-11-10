@@ -109,23 +109,37 @@ function MyProfile() {
           className="mx-auto mt-5"
           style={{
             height: "90%",
-            width: "60%",
+            width: "70%",
             position: "relative",
           }}
         >
           <p className="fw-bold">My Works</p>
           <div className="d-flex flex-wrap justify-content-center my-4">
             {post?.map((p) => (
-              <div key={p?.id} className="mx-3" onClick={() => {
-                navigate(`/detail-post/${p.id}`);
-              }}>
-                <img
-                  src={"http://localhost:5000/uploads/" + p?.image1}
-                  alt="a"
-                  width="200px"
-                  height="200px"
-                  style={{ objectFit: "cover", borderRadius: "10px" }}
-                ></img>
+              <div
+                key={p?.id}
+                className="m-3"
+                onClick={() => {
+                  navigate(`/detail-post/${p.id}`);
+                }}
+              >
+                {p?.image1 ? (
+                  <img
+                    src={"http://localhost:5000/uploads/" + p?.image1}
+                    alt="a"
+                    width="200px"
+                    height="200px"
+                    style={{ objectFit: "cover", borderRadius: "10px" }}
+                  ></img>
+                ) : (
+                  <img
+                    src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                    alt="a"
+                    width="200px"
+                    height="200px"
+                    style={{ objectFit: "cover", borderRadius: "10px" }}
+                  ></img>
+                )}
               </div>
             ))}
           </div>

@@ -71,19 +71,33 @@ function Page() {
         </div>
         <p className="mt-5 fw-bold">Today's Post</p>
         <div className="d-flex flex-wrap ">
-        {post2?.map((p) => (
-          <div key={p.id} className="m-1 bg-dark" onClick={() => {
-            navigate(`/detail-post/${p.id}`);
-          }}>
-            <img
-              src={"http://localhost:5000/uploads/" + p.image1}
-              alt="a"
-              width="200px"
-              height="200px"
-              style={{ objectFit: "cover" }}
-            ></img>
-          </div>
-        ))}
+          {post2?.map((p) => (
+            <div
+              key={p.id}
+              className="m-1 bg-dark"
+              onClick={() => {
+                navigate(`/detail-post/${p.id}`);
+              }}
+            >
+              {p?.image1 ? (
+                <img
+                  src={"http://localhost:5000/uploads/" + p.image1}
+                  alt="a"
+                  width="200px"
+                  height="200px"
+                  style={{ objectFit: "cover" }}
+                ></img>
+              ) : (
+                <img
+                  src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                  alt="a"
+                  width="200px"
+                  height="200px"
+                  style={{ objectFit: "cover" }}
+                ></img>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

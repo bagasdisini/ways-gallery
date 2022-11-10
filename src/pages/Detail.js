@@ -77,55 +77,73 @@ function Detail() {
           </div>
         </div>
         <img
-          src={"http://localhost:5000/uploads/" + post?.image1}
+          src={
+            post?.image1
+              ? "http://localhost:5000/uploads/" + post?.image1
+              : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+          }
           style={{ width: "100%" }}
         ></img>
         <div className="d-flex justify-content-center mb-4">
-          <img
-            src={"http://localhost:5000/uploads/" + post?.image2}
-            style={{
-              width: "20%",
-              height: "100px",
-              objectFit: "cover",
-              display: "block",
-              margin: "10px",
-            }}
-          ></img>
-          <img
-            src={"http://localhost:5000/uploads/" + post?.image3}
-            style={{
-              width: "20%",
-              height: "100px",
-              objectFit: "cover",
-              display: "block",
-              margin: "10px",
-            }}
-          ></img>
-          <img
-            src={"http://localhost:5000/uploads/" + post?.image4}
-            style={{
-              width: "20%",
-              height: "100px",
-              objectFit: "cover",
-              display: "block",
-              margin: "10px",
-            }}
-          ></img>
-          <img
-            src={"http://localhost:5000/uploads/" + post?.image5}
-            style={{
-              width: "20%",
-              height: "100px",
-              objectFit: "cover",
-              display: "block",
-              margin: "10px",
-            }}
-          ></img>
+          {post?.image2 ? (
+            <img
+              src={"http://localhost:5000/uploads/" + post?.image2}
+              style={{
+                width: "20%",
+                height: "100px",
+                objectFit: "cover",
+                display: "block",
+                margin: "10px",
+              }}
+            ></img>
+          ) : (
+            <></>
+          )}
+          {post?.image3 ? (
+            <img
+              src={"http://localhost:5000/uploads/" + post?.image3}
+              style={{
+                width: "20%",
+                height: "100px",
+                objectFit: "cover",
+                display: "block",
+                margin: "10px",
+              }}
+            ></img>
+          ) : (
+            <></>
+          )}
+          {post?.image4 ? (
+            <img
+              src={"http://localhost:5000/uploads/" + post?.image4}
+              style={{
+                width: "20%",
+                height: "100px",
+                objectFit: "cover",
+                display: "block",
+                margin: "10px",
+              }}
+            ></img>
+          ) : (
+            <></>
+          )}
+          {post?.image5 ? (
+            <img
+              src={"http://localhost:5000/uploads/" + post?.image5}
+              style={{
+                width: "20%",
+                height: "100px",
+                objectFit: "cover",
+                display: "block",
+                margin: "10px",
+              }}
+            ></img>
+          ) : (
+            <></>
+          )}
         </div>
         <p className="fw-bold fs-5">👋 Say Hello {post?.userId?.email}</p>
-        <p className="mb-5 fs-5">
-        {post?.desc}
-        </p>
+        <p className="mb-5 fs-5">{post?.desc}</p>
       </div>
     </div>
   );
