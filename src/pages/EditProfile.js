@@ -26,7 +26,6 @@ function EditProfile() {
   const [form, setForm] = useState({
     name: "",
     image: "",
-    bestArt: "",
     greeting: "",
   });
 
@@ -45,7 +44,6 @@ function EditProfile() {
         ...form,
         name: user.name,
         image: user.image,
-        bestArt: user.bestArt,
         greeting: user.greeting,
       });
     }
@@ -71,9 +69,6 @@ function EditProfile() {
       const formData = new FormData();
       if (preview) {
         formData.set("image", form?.image, form?.image.name);
-      }
-      if (preview1) {
-        formData.set("bestArt", form?.bestArt, form?.bestArt.name);
       }
       formData.set("name", form.name);
       formData.set("greeting", form.greeting);
