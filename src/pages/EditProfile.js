@@ -205,6 +205,10 @@ function EditProfile() {
             }}
             alt={preview}
           />
+        </div>
+      )}
+       {preview1 && (
+        <div className="mb-3">
           <img
             src={preview1}
             style={{
