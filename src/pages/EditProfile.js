@@ -36,7 +36,7 @@ function EditProfile() {
     return response.data.data;
   });
 
-  console.log(user);
+  console.log(form);
 
   useEffect(() => {
     if (user) {
