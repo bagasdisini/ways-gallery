@@ -13,7 +13,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 function EditProfile() {
   const [state, dispatch] = useContext(UserContext);
   const [preview, setPreview] = useState(null);
-  const [preview1, setPreview1] = useState(null);
   const navigate = useNavigate();
 
   const navigateProfile = () => {
@@ -56,18 +55,12 @@ function EditProfile() {
     setForm({
       ...form,
       [e.target.name]:
-        (e.target.type === "file" ? e.target.files[0] : e.target.value,
-        e.target.type === "file" ? e.target.files[1] : e.target.value),
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
 
     if (e.target.type == "file") {
       const url = URL.createObjectURL(e.target.files[0]);
       setPreview(url);
-    }
-
-    if (e.target.type == "file") {
-      const url2 = URL.createObjectURL(e.target.files[1]);
-      setPreview1(url2);
     }
   };
 
@@ -173,17 +166,6 @@ function EditProfile() {
               onChange={handleChange}
             />
           </InputGroup>
-          <InputGroup className="mb-3" style={{ width: "30%" }}>
-            <Form.Control
-              placeholder="Attach Image"
-              aria-label="Image"
-              aria-describedby="basic-addon1"
-              type="file"
-              name="bestArt"
-              onChange={handleChange}
-            />
-          </InputGroup>
-
           <Button
             type="submit"
             style={{ width: "20%", background: "#2FC4B2", border: "none" }}
@@ -204,19 +186,6 @@ function EditProfile() {
               objectFit: "cover",
             }}
             alt={preview}
-          />
-        </div>
-      )}
-       {preview1 && (
-        <div className="mb-3">
-          <img
-            src={preview1}
-            style={{
-              width: "140px",
-              height: "140px",
-              objectFit: "cover",
-            }}
-            alt={preview1}
           />
         </div>
       )}
