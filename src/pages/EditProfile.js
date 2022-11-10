@@ -163,6 +163,24 @@ function EditProfile() {
               onChange={handleChange}
             />
           </Form.Group>
+          <InputGroup className="mb-3" style={{ width: "30%" }}>
+                  <Form.Control
+                    placeholder="Attach Image"
+                    aria-label="Image"
+                    aria-describedby="basic-addon1"
+                    type="file"
+                    name="image"
+                    onChange={handleChange}
+                  />
+                 <Form.Control
+                    placeholder="Attach Image"
+                    aria-label="Image"
+                    aria-describedby="basic-addon1"
+                    type="file"
+                    name="bestArt"
+                    onChange={handleChange}
+                  />
+                </InputGroup>
           <Button
             type="submit"
             style={{ width: "20%", background: "#2FC4B2", border: "none" }}
