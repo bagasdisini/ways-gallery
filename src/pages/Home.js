@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import Dropdown from "react-bootstrap/Dropdown";
 import InputGroup from "react-bootstrap/InputGroup";
+import { useQuery } from "react-query";
 
 function Page() {
   const navigate = useNavigate();
@@ -21,29 +22,16 @@ function Page() {
     document.title = "WaysGallery";
   }, []);
 
-  const [message, setMessage] = useState(null);
-
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-    fullName: "",
-    gender: "",
-    phone: "",
-    role: "",
+  let { data: post2 } = useQuery("posttwCache", async () => {
+    const response = await API.get("/posts");
+    return response.data.data;
   });
 
-  const { fullName, email, password, gender, phone, role } = form;
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
+  console.log(post2);
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
 
       <div
         className="mx-auto"
@@ -73,11 +61,30 @@ function Page() {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="basic-addon1"
-              style={{ backgroundColor:"#E7E7E7", borderStyle:"none", borderRadius:"6px" }}
+              style={{
+                backgroundColor: "#E7E7E7",
+                borderStyle: "none",
+                borderRadius: "6px",
+              }}
             />
           </InputGroup>
         </div>
         <p className="mt-5 fw-bold">Today's Post</p>
+        <div className="d-flex flex-wrap ">
+        {post2?.map((p) => (
+          <div key={p.id} className="m-1 bg-dark" onClick={() => {
+            navigate(`/detail-post/${p.id}`);
+          }}>
+            <img
+              src={"http://localhost:5000/uploads/" + p.image1}
+              alt="a"
+              width="200px"
+              height="200px"
+              style={{ objectFit: "cover" }}
+            ></img>
+          </div>
+        ))}
+        </div>
       </div>
     </div>
   );

@@ -28,9 +28,6 @@ function EditProfile() {
     return response.data.data;
   });
 
-  console.log(id);
-  console.log(state.user.id);
-
   return (
     <div>
       <NavBar />

@@ -1,48 +1,25 @@
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API } from "../config/api";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import BK from "../assets/BK.png";
 import Mockup from "../assets/mockup.png";
 import NavBar from "./NavBar";
-import toRupiah from "@develoka/angka-rupiah-js";
-import Dropdown from "react-bootstrap/Dropdown";
 
-function Detail({ addItem }) {
+function Detail() {
   const [state] = useContext(UserContext);
 
-  const showToastMessage = () => {
-    toast.success("Sukses menambahkan ke keranjang!", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      theme: "light",
-    });
-  };
-
-  const [category, setCategory] = useState(1);
-
-  const handleCat1 = () => setCategory(1);
-  const handleCat2 = () => setCategory(2);
-
   useEffect(() => {
-    document.title = "Restaurant Menu";
+    document.title = "Detail Post";
   }, []);
 
   let { id } = useParams();
-  let { data: products } = useQuery("productsCache", async () => {
-    const response = await API.get("/products");
-    const response2 = response.data.data.filter((p) => p.admin_id == id);
-    return response2;
+  let { data: post } = useQuery("posttCache", async () => {
+    const response = await API.get("/post/" + id);
+    return response.data.data;
   });
 
   return (
@@ -53,16 +30,20 @@ function Detail({ addItem }) {
         style={{
           marginTop: "10px",
           height: "90%",
-          width: "45%",
+          width: "40%",
         }}
       >
         <div className="d-flex align-items-center justify-content-between my-4">
           <div className="d-flex align-items-center">
-            <img src={BK} style={{ borderRadius: "50px" }}></img>
+            <img
+              src={"http://localhost:5000/uploads/" + post?.userId?.image}
+              style={{ borderRadius: "50px" }}
+              width="60px"
+            ></img>
             <div className="ms-4">
-              <span className="fw-bold fs-5">Robo-x landing Page</span>
+              <span className="fw-bold fs-5">{post?.title}</span>
               <br />
-              <span className="fs-5">Geralt</span>
+              <span className="fs-5">{post?.userId?.name}</span>
             </div>
           </div>
           <div>
@@ -95,22 +76,55 @@ function Detail({ addItem }) {
             </Button>
           </div>
         </div>
-        <img src={Mockup} style={{ width: "100%" }}></img>
         <img
-          src={Mockup}
-          style={{
-            width: "20%",
-            height: "100px",
-            objectFit: "cover",
-            display: "block",
-            margin: "10px auto 30px",
-          }}
+          src={"http://localhost:5000/uploads/" + post?.image1}
+          style={{ width: "100%" }}
         ></img>
-        <p className="fw-bold fs-5">👋 Say Hello geralt@gmail.com</p>
+        <div className="d-flex justify-content-center mb-4">
+          <img
+            src={"http://localhost:5000/uploads/" + post?.image2}
+            style={{
+              width: "20%",
+              height: "100px",
+              objectFit: "cover",
+              display: "block",
+              margin: "10px",
+            }}
+          ></img>
+          <img
+            src={"http://localhost:5000/uploads/" + post?.image3}
+            style={{
+              width: "20%",
+              height: "100px",
+              objectFit: "cover",
+              display: "block",
+              margin: "10px",
+            }}
+          ></img>
+          <img
+            src={"http://localhost:5000/uploads/" + post?.image4}
+            style={{
+              width: "20%",
+              height: "100px",
+              objectFit: "cover",
+              display: "block",
+              margin: "10px",
+            }}
+          ></img>
+          <img
+            src={"http://localhost:5000/uploads/" + post?.image5}
+            style={{
+              width: "20%",
+              height: "100px",
+              objectFit: "cover",
+              display: "block",
+              margin: "10px",
+            }}
+          ></img>
+        </div>
+        <p className="fw-bold fs-5">👋 Say Hello {post?.userId?.email}</p>
         <p className="mb-5 fs-5">
-          Hey, guys! Super excited to share my new web app interface and
-          elements that I recently worked on. Hope you enjoyed it. Thanks for
-          your likes and comments!
+        {post?.desc}
         </p>
       </div>
     </div>
