@@ -77,7 +77,11 @@ function Navigation() {
             }}
           >
             <img
-              src={state.user.image === "" ? state.user.image : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"}
+              src={
+                state.user.image === "http://localhost:5000/uploads/"
+                  ? "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                  : state.user.image
+              }
               alt="logo"
               width="40px"
               height="40px"

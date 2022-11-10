@@ -13,6 +13,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 function EditProfile() {
   const [state, dispatch] = useContext(UserContext);
   const [preview, setPreview] = useState(null);
+  const [preview1, setPreview1] = useState(null);
   const navigate = useNavigate();
 
   const navigateProfile = () => {
@@ -27,6 +28,7 @@ function EditProfile() {
     name: "",
     image: "",
     greeting: "",
+    bestArt: "",
   });
 
   const idid = state?.user.id;
@@ -45,6 +47,7 @@ function EditProfile() {
         name: user.name,
         image: user.image,
         greeting: user.greeting,
+        bestArt: user.bestArt,
       });
     }
   }, [user]);
@@ -62,6 +65,19 @@ function EditProfile() {
     }
   };
 
+  const handleChange1 = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
+    });
+
+    if (e.target.type == "file") {
+      const url = URL.createObjectURL(e.target.files[0]);
+      setPreview1(url);
+    }
+  };
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -69,6 +85,9 @@ function EditProfile() {
       const formData = new FormData();
       if (preview) {
         formData.set("image", form?.image, form?.image.name);
+      }
+      if (preview1) {
+        formData.set("bestArt", form?.bestArt, form?.bestArt.name);
       }
       formData.set("name", form.name);
       formData.set("greeting", form.greeting);
@@ -106,32 +125,67 @@ function EditProfile() {
             width: "45%",
           }}
         >
-          <div
-            style={{
-              border: "2px dashed grey",
-              width: "100%",
-              height: "400px",
-              borderRadius: "20px",
-            }}
-            className="d-flex justify-content-center align-items-center"
-          >
-            <p>Upload Best Your Art</p>
-          </div>
+          {preview1 ? (
+            preview1 && (
+              <div className="mb-3">
+                <img
+                  src={preview1}
+                  style={{
+                    width: "100%",
+                    height: "400px",
+                    objectFit: "cover",
+                    borderRadius: "20px",
+                  }}
+                  alt={preview1}
+                />
+              </div>
+            )
+          ) : (
+            <div
+              style={{
+                border: "2px dashed grey",
+                width: "100%",
+                height: "400px",
+                borderRadius: "20px",
+              }}
+              className="d-flex justify-content-center align-items-center"
+            >
+              <p>Upload Best Your Art</p>
+            </div>
+          )}
         </div>
         <div
           style={{ width: "50%" }}
           className="d-flex flex-column justify-content-center align-items-center"
         >
-          <div
-            style={{
-              border: "2px dashed grey",
-              borderRadius: "100px",
-            }}
-            className="p-5"
-          >
-            <img src={Cam} width="50px"></img>
-          </div>
-          <Form.Group className="mb-3 mt-5">
+          {preview ? (
+            preview && (
+              <div>
+                <img
+                  src={preview}
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "100px",
+                  }}
+                  alt={preview}
+                />
+              </div>
+            )
+          ) : (
+            <div
+              style={{
+                border: "2px dashed grey",
+                borderRadius: "100px",
+              }}
+              className="p-5"
+            >
+              <img src={Cam} width="50px"></img>
+            </div>
+          )}
+
+          <Form.Group className="mb-3 mt-4">
             <Form.Control
               type="text"
               placeholder="Greeting"
@@ -151,9 +205,8 @@ function EditProfile() {
               onChange={handleChange}
             />
           </Form.Group>
-          <InputGroup className="mb-3" style={{ width: "30%" }}>
+          <InputGroup className="mb-3" style={{ width: "51%" }}>
             <Form.Control
-              placeholder="Attach Image"
               aria-label="Image"
               aria-describedby="basic-addon1"
               type="file"
@@ -161,6 +214,16 @@ function EditProfile() {
               onChange={handleChange}
             />
           </InputGroup>
+          <InputGroup className="mb-3" style={{ width: "51%" }}>
+            <Form.Control
+              aria-label="bestArt"
+              aria-describedby="basic-addon1"
+              type="file"
+              name="bestArt"
+              onChange={handleChange1}
+            />
+          </InputGroup>
+
           <Button
             type="submit"
             style={{ width: "20%", background: "#2FC4B2", border: "none" }}
@@ -171,19 +234,6 @@ function EditProfile() {
           </Button>
         </div>
       </div>
-      {preview && (
-        <div className="mb-3">
-          <img
-            src={preview}
-            style={{
-              width: "140px",
-              height: "140px",
-              objectFit: "cover",
-            }}
-            alt={preview}
-          />
-        </div>
-      )}
     </div>
   );
 }
