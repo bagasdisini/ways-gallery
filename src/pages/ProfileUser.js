@@ -13,25 +13,22 @@ function EditProfile() {
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
-  const navigateHire = () => {
-    navigate("/hire");
-  };
+  let { id } = useParams();
+
+  let { data: user, refetch } = useQuery("userCache", async () => {
+    const response = await API.get(`/user/${id}`);
+    return response.data.data;
+  });
 
   useEffect(() => {
     document.title = "Profile";
+    refetch();
   }, []);
-
-  let { id } = useParams();
-
-  let { data: user } = useQuery("userCache", async () => {
-    const response = await API.get("/user/" + id);
-    return response.data.data;
-  });
 
   return (
     <div>
       <NavBar />
-      {user.id === state.user.id ? (
+      {user?.id === state?.user?.id ? (
         <div>
           <div
             className="mx-auto mt-4 d-flex justify-content-between"
@@ -52,8 +49,8 @@ function EditProfile() {
             >
               <img
                 src={
-                  state.user.image === ""
-                    ? state.user.image
+                  state?.user?.image === ""
+                    ? state?.user?.image
                     : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                 }
                 alt="a"
@@ -65,10 +62,10 @@ function EditProfile() {
                 width="60px"
                 height="60px"
               ></img>
-              <h5 className="mt-4 fw-bold">{state.user.name}</h5>
+              <h5 className="mt-4 fw-bold">{state?.user?.name}</h5>
               <h3 className="fw-bold mt-4">
-                {state.user.greeting !== ""
-                  ? state.user.greeting
+                {state?.user?.greeting !== ""
+                  ? state?.user?.greeting
                   : "Welcome to my profile!"}
               </h3>
               <div style={{ position: "relative" }} className="mt-4 ">
@@ -92,7 +89,9 @@ function EditProfile() {
                     border: "none",
                   }}
                   className="px-2 py-1 fs-6"
-                  onClick={navigateHire}
+                  onClick={() => {
+                    navigate(`/hire/${id}`);
+                  }}
                 >
                   Hire{" "}
                 </Button>
@@ -100,8 +99,8 @@ function EditProfile() {
             </div>
             <img
               src={
-                state.user.bestArt === ""
-                  ? state.user.bestArt
+                state?.user?.bestArt === ""
+                  ? state?.user?.bestArt
                   : "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"
               }
               alt="a"
@@ -146,8 +145,8 @@ function EditProfile() {
             >
               <img
                 src={
-                  user.image === ""
-                    ? user.image
+                  user?.image === ""
+                    ? user?.image
                     : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                 }
                 alt="a"
@@ -159,10 +158,10 @@ function EditProfile() {
                 width="60px"
                 height="60px"
               ></img>
-              <h5 className="mt-4 fw-bold">{user.name}</h5>
+              <h5 className="mt-4 fw-bold">{user?.name}</h5>
               <h3 className="fw-bold mt-4">
-                {user.greeting !== ""
-                  ? user.greeting
+                {user?.greeting !== ""
+                  ? user?.greeting
                   : "Welcome to my profile!"}
               </h3>
               <div style={{ position: "relative" }} className="mt-4 ">
@@ -186,7 +185,9 @@ function EditProfile() {
                     border: "none",
                   }}
                   className="px-2 py-1 fs-6"
-                  onClick={navigateHire}
+                  onClick={() => {
+                    navigate(`/hire/${id}`);
+                  }}
                 >
                   Hire{" "}
                 </Button>
@@ -194,8 +195,8 @@ function EditProfile() {
             </div>
             <img
               src={
-                user.bestArt === ""
-                  ? user.bestArt
+                user?.bestArt === ""
+                  ? user?.bestArt
                   : "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"
               }
               alt="a"
@@ -216,7 +217,7 @@ function EditProfile() {
               position: "relative",
             }}
           >
-            <p className="fw-bold">{user.name}'s Works</p>
+            <p className="fw-bold">{user?.name}'s Works</p>
           </div>
         </div>
       )}

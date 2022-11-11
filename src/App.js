@@ -61,7 +61,7 @@ function App() {
         <Route path="/profile-user/:id" element={<ProfileUser />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/edit-user" element={<EditProfile />} />
-        <Route path="/hire" element={<Hire />} />
+        <Route path="/hire/:id" element={<Hire />} />
         <Route path="/upload-post" element={<Upload />} />
         <Route path="/order" element={<MyOrder />} />
         <Route path="/send-project" element={<SendProject />} />

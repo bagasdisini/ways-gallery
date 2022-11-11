@@ -55,9 +55,9 @@ function MyProfile() {
           >
             <img
               src={
-                state.user.image === "http://localhost:5000/uploads/"
+                state?.user?.image === "http://localhost:5000/uploads/"
                   ? "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
-                  : state.user.image
+                  : state?.user?.image
               }
               alt="a"
               style={{
@@ -68,10 +68,10 @@ function MyProfile() {
               width="60px"
               height="60px"
             ></img>
-            <h5 className="mt-4 fw-bold">{state.user.name}</h5>
+            <h5 className="mt-4 fw-bold">{state?.user?.name}</h5>
             <h3 className="fw-bold mt-4">
-              {state.user.greeting !== ""
-                ? state.user.greeting
+              {state?.user?.greeting !== ""
+                ? state?.user?.greeting
                 : "Welcome to my profile!"}
             </h3>
             <div style={{ position: "relative" }} className="mt-4 ">
@@ -91,9 +91,9 @@ function MyProfile() {
           </div>
           <img
             src={
-              state.user.bestArt === ""
+              state?.user?.bestArt === "http://localhost:5000/uploads/"
                 ? "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"
-                : state.user.bestArt
+                : state?.user?.bestArt
             }
             alt="a"
             style={{
@@ -109,13 +109,13 @@ function MyProfile() {
           className="mx-auto mt-5"
           style={{
             height: "90%",
-            width: "70%",
+            width: "60%",
             position: "relative",
           }}
         >
           <p className="fw-bold">My Works</p>
           <div className="d-flex flex-wrap justify-content-center my-4">
-            {post?.map((p) => (
+            {post?.data?.map((p) => (
               <div
                 key={p?.id}
                 className="m-3"

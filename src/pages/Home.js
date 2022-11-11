@@ -27,7 +27,7 @@ function Page() {
     return response.data.data;
   });
 
-  console.log(post2);
+  console.log(state);
 
   return (
     <div>
@@ -70,7 +70,7 @@ function Page() {
           </InputGroup>
         </div>
         <p className="mt-5 fw-bold">Today's Post</p>
-        <div className="d-flex flex-wrap ">
+        <div className="d-flex flex-wrap justify-content-center">
           {post2?.map((p) => (
             <div
               key={p.id}

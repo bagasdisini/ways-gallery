@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
 import { API } from "../config/api";
 import NavBar from "./NavBar";
-import BK from "../assets/BK.png";
-import Upload from "../assets/upload.png";
-import Cam from "../assets/cam.png";
-import Plus from "../assets/plus.png";
-import Mockup from "../assets/mockup.png";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -17,90 +11,47 @@ function EditProfile() {
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
-  const [show, setShow] = useState(false);
-  const [preview, setPreview] = useState(null);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   useEffect(() => {
-    document.title = "Edit Profile";
+    document.title = "Hire";
   }, []);
 
-  const wrapperRef = useRef(null);
+  let { id } = useParams();
 
-  const [draggable] = useState(true);
-  const [position, setPosition] = useState([-6.3818149, 106.7495821]);
-  const markerRef = useRef(null);
-  const eventHandlers = useMemo(
-    () => ({
-      dragend() {
-        const marker = markerRef.current;
-        if (marker != null) {
-          setPosition(marker.getLatLng());
-        }
-      },
-    }),
-    []
-  );
-
-  var positionStr = `${position.lat}, ${position.lng}`;
+  const admin_id = id
+  const buyer_id = `${state.user.id}`
 
   const [form, setForm] = useState({
-    fullName: "",
-    image: "",
-    email: "",
-    phone: "",
-    location: positionStr,
+    admin_id: admin_id,
+    buyer_id: buyer_id,
+    title: "",
+    desc: "",
+    startDate: "",
+    endDate: "",
+    price: "",
+    status: "pending",
   });
 
-  const idid = state?.user.id;
-
-  let { data: user } = useQuery("userCache", async () => {
-    const response = await API.get("/user/" + idid);
-    return response.data.data;
-  });
-
-  useEffect(() => {
-    if (user) {
-      setForm({
-        ...form,
-        fullName: user.fullName,
-        email: user.email,
-        image: user.image,
-        phone: user.phone,
-        location: positionStr,
-      });
-    }
-  }, [user]);
-
-  // const handleChange = (e) => {
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]:
-  //       e.target.type === "file" ? e.target.files[0] : e.target.value,
-  //   });
-
-  //   if (e.target.type == "file") {
-  //     const url = URL.createObjectURL(e.target.files[0]);
-  //     setPreview(url);
-  //   }
-  // };
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
 
       const formData = new FormData();
-      if (preview) {
-        formData.set("image", form?.image, form?.image.name);
-      }
-      formData.set("fullName", form.fullName);
-      formData.set("email", form.email);
-      formData.set("phone", form.phone);
-      formData.set("location", positionStr);
+      formData.set("title", form.title);
+      formData.set("desc", form.desc);
+      formData.set("startDate", form.startDate);
+      formData.set("endDate", form.endDate);
+      formData.set("price", form.price);
+      formData.set("status", form.status);
 
-      const response = await API.patch(`/user/${idid}`, formData);
+      const response = await API.post(`/transaction`, formData);
 
       const auth = await API.get("/check-auth");
 
@@ -111,7 +62,7 @@ function EditProfile() {
         payload,
       });
 
-      navigate("/my-profile");
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -167,9 +118,14 @@ function EditProfile() {
         </Form.Group>
 
         <div className="d-flex justify-content-center">
-        <Button
+          <Button
             type="submit"
-            style={{ width: "20%", background: "#E7E7E7", border: "none", color:"black" }}
+            style={{
+              width: "20%",
+              background: "#E7E7E7",
+              border: "none",
+              color: "black",
+            }}
             className="mt-3 mx-3"
           >
             Cancel
@@ -182,7 +138,7 @@ function EditProfile() {
           >
             Bidding
           </Button>
-          </div>
+        </div>
       </div>
     </div>
   );

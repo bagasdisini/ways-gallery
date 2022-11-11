@@ -6,11 +6,12 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import Mockup from "../assets/mockup.png";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const [state] = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Detail Post";
@@ -43,38 +44,56 @@ function Detail() {
             <div className="ms-4">
               <span className="fw-bold fs-5">{post?.title}</span>
               <br />
-              <span className="fs-5">{post?.userId?.name}</span>
+              {post?.userId?.id !== state?.user?.id ? (
+                <div
+                  onClick={() => {
+                    navigate(`/profile-user/${post?.userId?.id}`);
+                  }}
+                >
+                  <span className="fs-5">{post?.userId?.name}</span>
+                </div>
+              ) : (
+                <div>
+                  <span className="fs-5">{post?.userId?.name}</span>
+                </div>
+              )}
             </div>
           </div>
-          <div>
-            <Button
-              type="submit"
-              className="px-4 me-4"
-              style={{
-                background: "#2FC4B2",
-                border: "none",
-                float: "right",
-                width: "100px",
-              }}
-              onClick={{}}
-            >
-              Hire
-            </Button>
-            <Button
-              type="submit"
-              className="px-4 me-4"
-              style={{
-                background: "#E7E7E7",
-                border: "none",
-                float: "right",
-                width: "100px",
-                color: "black",
-              }}
-              onClick={{}}
-            >
-              Follow
-            </Button>
-          </div>
+          {post?.userId?.id !== state?.user?.id ? (
+            <div>
+              <Button
+                type="submit"
+                className="px-4 me-4"
+                style={{
+                  background: "#2FC4B2",
+                  border: "none",
+                  float: "right",
+                  width: "100px",
+                }}
+                onClick={() => {
+                  navigate(`/hire/${post?.userId?.id}`);
+                }}
+              >
+                Hire
+              </Button>
+              <Button
+                type="submit"
+                className="px-4 me-4"
+                style={{
+                  background: "#E7E7E7",
+                  border: "none",
+                  float: "right",
+                  width: "100px",
+                  color: "black",
+                }}
+                onClick={{}}
+              >
+                Follow
+              </Button>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
         <img
           src={

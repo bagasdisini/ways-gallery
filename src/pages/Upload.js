@@ -8,9 +8,8 @@ import Upload from "../assets/upload.png";
 import Plus from "../assets/plus.png";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import InputGroup from "react-bootstrap/InputGroup";
 
-function EditProfile() {
+function UploadPost() {
   const [state, dispatch] = useContext(UserContext);
   const [preview, setPreview] = useState(null);
   const [preview2, setPreview2] = useState(null);
@@ -450,4 +449,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default UploadPost;
