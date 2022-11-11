@@ -6,10 +6,7 @@ import { useQuery } from "react-query";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import NavBar from "./NavBar";
-import Pending from "../assets/pending.png";
-import Sukses from "../assets/sukses.png";
-import Button from "react-bootstrap/Button";
-import Cancel from "../assets/cancel.png";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Transaction() {
   useEffect(() => {
@@ -23,7 +20,7 @@ function Transaction() {
     async () => {
       const response = await API.get("/my-transactions");
       const response2 = response.data.data.filter(
-        (p) => p.buyer_id == state.user.id
+        (p) => p.admin_id == state.user.id
       );
       return response2;
     }
@@ -38,7 +35,7 @@ function Transaction() {
       >
         <div style={{ width: "90%" }}>
           <div className="mt-5">
-            <h2 className="my-4">My Order</h2>
+            <h2 className="my-4">My Offer</h2>
             <div>
               <Table bordered hover style={{ border: "1px" }}>
                 <thead style={{ backgroundColor: "#E5E5E5" }}>
@@ -59,7 +56,7 @@ function Transaction() {
                         verticalAlign: "middle",
                       }}
                     >
-                      Vendor
+                      Client
                     </th>
                     <th
                       style={{
@@ -128,13 +125,12 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.admin.name}
+                        {p.buyer.name}
                       </td>
                       <td style={{ wordBreak: "break-all" }}>{p.title}</td>
                       <td
                         style={{
                           wordBreak: "break-all",
-                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
@@ -143,76 +139,25 @@ function Transaction() {
                       <td
                         style={{
                           wordBreak: "break-all",
-                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
                         {p.endDate}
                       </td>
-
                       <td
                         style={{
                           wordBreak: "break-all",
-                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.status === "pending" ? (
-                          "Pending"
-                        ) : p.status === "sukses" ? (
-                          "Success"
-                        ) : p.status === "cancel" ? (
-                          "Cancel"
-                        ) : p.status === "complete" ? (
-                          "Complete"
-                        ) : (
-                          <></>
-                        )}
+                        {p.status}
                       </td>
-
                       <td
                         style={{
                           wordBreak: "break-all",
-                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
-                      >
-                        {p.status === "pending1" ? (
-                          <img
-                            src={Pending}
-                            alt="2"
-                            width="25px"
-                            height="25px"
-                          ></img>
-                        ) : p.status === "sukses" ? (
-                          <img
-                            src={Sukses}
-                            alt="2"
-                            width="25px"
-                            height="25px"
-                          ></img>
-                        ) : p.status === "cancel" ? (
-                          <img
-                            src={Cancel}
-                            alt="2"
-                            width="25px"
-                            height="25px"
-                          ></img>
-                        ) : p.status === "pending" ? (
-                          <Button
-                            type="submit"
-                            className="px-3"
-                            style={{
-                              background: "#2FC4B2",
-                              border: "none",
-                            }}
-                          >
-                            Upload
-                          </Button>
-                        ) : (
-                          <></>
-                        )}
-                      </td>
+                      ></td>
                     </tr>
                   ))}
                 </tbody>

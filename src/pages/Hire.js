@@ -17,19 +17,19 @@ function EditProfile() {
 
   let { id } = useParams();
 
-  const admin_id = id
-  const buyer_id = `${state.user.id}`
+  const buyer_id = state.user.id;
 
   const [form, setForm] = useState({
-    admin_id: admin_id,
+    admin_id: parseInt(id),
     buyer_id: buyer_id,
     title: "",
     desc: "",
     startDate: "",
     endDate: "",
     price: "",
-    status: "pending",
   });
+
+  const { title, desc, startDate, endDate, price } = form;
 
   const handleChange = (e) => {
     setForm({
@@ -43,15 +43,7 @@ function EditProfile() {
     try {
       e.preventDefault();
 
-      const formData = new FormData();
-      formData.set("title", form.title);
-      formData.set("desc", form.desc);
-      formData.set("startDate", form.startDate);
-      formData.set("endDate", form.endDate);
-      formData.set("price", form.price);
-      formData.set("status", form.status);
-
-      const response = await API.post(`/transaction`, formData);
+      const response = await API.post(`/transaction`, form);
 
       const auth = await API.get("/check-auth");
 
@@ -83,6 +75,9 @@ function EditProfile() {
             type="text"
             placeholder="Title"
             style={{ backgroundColor: "#F4F4F4" }}
+            onChange={handleChange}
+            name="title"
+            value={title}
           />
         </Form.Group>
         <Form.Group className="mb-3" style={{ width: "100%" }}>
@@ -91,32 +86,43 @@ function EditProfile() {
             rows={6}
             placeholder="Description"
             style={{ backgroundColor: "#F4F4F4" }}
+            onChange={handleChange}
+            name="desc"
+            value={desc}
           />
         </Form.Group>
         <div className="d-flex justify-content-between">
           <Form.Group className="mb-3 me-2" style={{ width: "50%" }}>
             <Form.Control
-              type="text"
-              placeholder="Title"
+              type="date"
+              placeholder="Start Project"
               style={{ backgroundColor: "#F4F4F4" }}
+              onChange={handleChange}
+              name="startDate"
+              value={startDate}
             />
           </Form.Group>
           <Form.Group className="mb-3 ms-2" style={{ width: "50%" }}>
             <Form.Control
-              type="text"
-              placeholder="Start Project"
+              type="date"
+              placeholder="End Project"
               style={{ backgroundColor: "#F4F4F4" }}
+              onChange={handleChange}
+              name="endDate"
+              value={endDate}
             />
           </Form.Group>
         </div>
         <Form.Group className="mb-3" style={{ width: "100%" }}>
           <Form.Control
-            type="text"
+            type="number"
             placeholder="Price"
             style={{ backgroundColor: "#F4F4F4" }}
+            onChange={handleChange}
+            name="price"
+            value={price}
           />
         </Form.Group>
-
         <div className="d-flex justify-content-center">
           <Button
             type="submit"
@@ -135,6 +141,7 @@ function EditProfile() {
             type="submit"
             style={{ width: "20%", background: "#2FC4B2", border: "none" }}
             className="mt-3 mx-3"
+            onClick={(e) => handleSubmit(e)}
           >
             Bidding
           </Button>

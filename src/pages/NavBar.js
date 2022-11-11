@@ -20,7 +20,11 @@ function Navigation() {
   };
 
   const navigateOrder = () => {
-    navigate("/order");
+    navigate("/my-order");
+  };
+
+  const navigateOffer = () => {
+    navigate("/my-offer");
   };
 
   const navigateHome = () => {
@@ -109,6 +113,16 @@ function Navigation() {
                 className="me-1"
               />{" "}
               Order
+            </Dropdown.Item>
+            <Dropdown.Item onClick={navigateOffer}>
+              <img
+                src={IconOrder}
+                alt="Order"
+                width="15px"
+                height="15px"
+                className="me-1"
+              />{" "}
+              Offer
             </Dropdown.Item>
             <Dropdown.Item onClick={LogoutHandle}>
               <Link to="/">

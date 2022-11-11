@@ -10,7 +10,7 @@ import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 
 function Detail() {
-  const [state] = useContext(UserContext);
+  const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,10 +18,37 @@ function Detail() {
   }, []);
 
   let { id } = useParams();
-  let { data: post } = useQuery("posttCache", async () => {
+  let { data: post, refetch } = useQuery("posttCache", async () => {
     const response = await API.get("/post/" + id);
     return response.data.data;
   });
+
+  console.log(state);
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.set("following", post?.userId?.id);
+
+      const response = await API.patch(`/user/${state?.user?.id}`, formData);
+
+      const auth = await API.get("/check-auth");
+
+      let payload = auth.data.data;
+
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
+      navigate("/home");
+
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -82,11 +109,13 @@ function Detail() {
                 style={{
                   background: "#E7E7E7",
                   border: "none",
-                  float: "right",
-                  width: "100px",
                   color: "black",
+                  float: "right",
                 }}
-                onClick={{}}
+                onClick={(e) => {
+                  handleSubmit(e);
+                  refetch();
+                }}
               >
                 Follow
               </Button>

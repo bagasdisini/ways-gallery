@@ -4,6 +4,7 @@ import Page from "./pages/LandingPage";
 import Detail from "./pages/Detail";
 import EditProfile from "./pages/EditProfile";
 import MyOrder from "./pages/MyOrder";
+import MyOffer from "./pages/MyOffer";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import Hire from "./pages/Hire";
@@ -63,7 +64,8 @@ function App() {
         <Route path="/edit-user" element={<EditProfile />} />
         <Route path="/hire/:id" element={<Hire />} />
         <Route path="/upload-post" element={<Upload />} />
-        <Route path="/order" element={<MyOrder />} />
+        <Route path="/my-order" element={<MyOrder />} />
+        <Route path="/my-offer" element={<MyOffer />} />
         <Route path="/send-project" element={<SendProject />} />
         <Route path="/view-project/:id" element={<ViewProject />} />
       </Routes>
