@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/Container";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { API } from "../config/api";
@@ -6,16 +7,21 @@ import { useQuery } from "react-query";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import NavBar from "./NavBar";
-import Dropdown from "react-bootstrap/Dropdown";
+import Pending from "../assets/pending.png";
+import Sukses from "../assets/sukses.png";
+import Button from "react-bootstrap/Button";
+import Cancel from "../assets/cancel.png";
 
 function Transaction() {
   useEffect(() => {
     document.title = "Order";
   }, []);
 
-  const [state] = useContext(UserContext);
+  const navigate = useNavigate();
+  const [state, dispatch] = useContext(UserContext);
+  const [idTransaction, setIdTransaction] = useState();
 
-  let { data: transactions } = useQuery(
+  let { data: transactions, refetch } = useQuery(
     "mytransactions12Cacwadhe",
     async () => {
       const response = await API.get("/my-transactions");
@@ -25,6 +31,61 @@ function Transaction() {
       return response2;
     }
   );
+
+  const [form] = useState({
+    status: "cancel",
+  });
+
+  const [formProgress] = useState({
+    status: "progress",
+  });
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const response = await API.patch(`/transaction/${idTransaction}`, form);
+
+      const auth = await API.get("/check-auth");
+
+      let payload = auth.data.data;
+
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
+
+      refetch();
+      setIdTransaction("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit1 = async (e) => {
+    try {
+      e.preventDefault();
+
+      const response = await API.patch(
+        `/transaction/${idTransaction}`,
+        formProgress
+      );
+
+      const auth = await API.get("/check-auth");
+
+      let payload = auth.data.data;
+
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
+
+      refetch();
+      setIdTransaction("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -127,10 +188,19 @@ function Transaction() {
                       >
                         {p.buyer.name}
                       </td>
-                      <td style={{ wordBreak: "break-all" }}>{p.title}</td>
                       <td
                         style={{
                           wordBreak: "break-all",
+                          textAlign: "center",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        {p.title}
+                      </td>
+                      <td
+                        style={{
+                          wordBreak: "break-all",
+                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
@@ -139,6 +209,7 @@ function Transaction() {
                       <td
                         style={{
                           wordBreak: "break-all",
+                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
@@ -147,17 +218,99 @@ function Transaction() {
                       <td
                         style={{
                           wordBreak: "break-all",
+                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.status}
+                        {p.status === "pending" ? (
+                          "Pending"
+                        ) : p.status === "progress" ? (
+                          "Progress"
+                        ) : p.status === "cancel" ? (
+                          "Cancel"
+                        ) : p.status === "complete" ? (
+                          "Complete"
+                        ) : (
+                          <></>
+                        )}
                       </td>
                       <td
                         style={{
                           wordBreak: "break-all",
+                          textAlign: "center",
                           verticalAlign: "middle",
                         }}
-                      ></td>
+                      >
+                        {p.status === "pending" ? (
+                          <div className="d-flex justify-content-evenly">
+                            <Button
+                              type="submit"
+                              className="px-3"
+                              style={{
+                                background: "red",
+                                border: "none",
+                              }}
+                              onClick={(e) => {
+                                setIdTransaction(p.id);
+                                handleSubmit(e);
+                              }}
+                            >
+                              Cancel{" "}
+                            </Button>
+                            <Button
+                              type="submit"
+                              className="px-3"
+                              style={{
+                                background: "#2FC4B2",
+                                border: "none",
+                              }}
+                              onClick={(e) => {
+                                setIdTransaction(p.id);
+                                handleSubmit1(e);
+                              }}
+                            >
+                              Approve{" "}
+                            </Button>
+                          </div>
+                        ) : p.status === "progress" ? (
+                          <Button
+                            type="submit"
+                            className="px-3"
+                            style={{
+                              background: "#2FC4B2",
+                              border: "none",
+                            }}
+                            onClick={() => {
+                              navigate(`/send-project/${p.id}`);
+                            }}
+                          >
+                            Send Project{" "}
+                          </Button>
+                        ) : p.status === "cancel" ? (
+                          <img
+                            src={Cancel}
+                            alt="2"
+                            width="25px"
+                            height="25px"
+                          ></img>
+                        ) : p.status === "complete" ? (
+                          <Button
+                            type="submit"
+                            className="px-3"
+                            style={{
+                              background: "#2FC4B2",
+                              border: "none",
+                            }}
+                            onClick={() => {
+                              navigate(`/view-project/${p.id}`);
+                            }}
+                          >
+                            View Project
+                          </Button>
+                        ) : (
+                          <></>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

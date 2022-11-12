@@ -20,7 +20,7 @@ function MyProfile() {
     setAuthToken(localStorage.token);
   }
 
-  let { data: post } = useQuery("posttCache", async () => {
+  let { data: posts, refetch } = useQuery("postssCache", async () => {
     const response = await API.get("/posts");
     const response2 = response.data.data.filter(
       (p) => p.userID == state.user.id
@@ -115,9 +115,9 @@ function MyProfile() {
         >
           <p className="fw-bold">My Works</p>
           <div className="d-flex flex-wrap justify-content-center my-4">
-            {post?.data?.map((p) => (
+            {posts?.map((p, index) => (
               <div
-                key={p?.id}
+                key={index}
                 className="m-3"
                 onClick={() => {
                   navigate(`/detail-post/${p.id}`);

@@ -27,8 +27,6 @@ function Page() {
     return response.data.data;
   });
 
-  console.log(state);
-
   return (
     <div>
       <NavBar />

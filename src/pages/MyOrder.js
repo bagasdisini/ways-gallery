@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/Container";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { API } from "../config/api";
@@ -16,10 +17,11 @@ function Transaction() {
     document.title = "Order";
   }, []);
 
+  const navigate = useNavigate();
   const [state] = useContext(UserContext);
 
   let { data: transactions } = useQuery(
-    "mytransactions12Cacwadhe",
+    "mytransactions12Cacwadh2e",
     async () => {
       const response = await API.get("/my-transactions");
       const response2 = response.data.data.filter(
@@ -130,7 +132,15 @@ function Transaction() {
                       >
                         {p.admin.name}
                       </td>
-                      <td style={{ wordBreak: "break-all" }}>{p.title}</td>
+                      <td
+                        style={{
+                          wordBreak: "break-all",
+                          textAlign: "center",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        {p.title}
+                      </td>
                       <td
                         style={{
                           wordBreak: "break-all",
@@ -149,7 +159,6 @@ function Transaction() {
                       >
                         {p.endDate}
                       </td>
-
                       <td
                         style={{
                           wordBreak: "break-all",
@@ -159,8 +168,8 @@ function Transaction() {
                       >
                         {p.status === "pending" ? (
                           "Pending"
-                        ) : p.status === "sukses" ? (
-                          "Success"
+                        ) : p.status === "progress" ? (
+                          "Progress"
                         ) : p.status === "cancel" ? (
                           "Cancel"
                         ) : p.status === "complete" ? (
@@ -169,7 +178,6 @@ function Transaction() {
                           <></>
                         )}
                       </td>
-
                       <td
                         style={{
                           wordBreak: "break-all",
@@ -177,14 +185,14 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.status === "pending1" ? (
+                        {p.status === "pending" ? (
                           <img
                             src={Pending}
                             alt="2"
                             width="25px"
                             height="25px"
                           ></img>
-                        ) : p.status === "sukses" ? (
+                        ) : p.status === "progress" ? (
                           <img
                             src={Sukses}
                             alt="2"
@@ -198,7 +206,7 @@ function Transaction() {
                             width="25px"
                             height="25px"
                           ></img>
-                        ) : p.status === "pending" ? (
+                        ) : p.status === "complete" ? (
                           <Button
                             type="submit"
                             className="px-3"
@@ -206,8 +214,11 @@ function Transaction() {
                               background: "#2FC4B2",
                               border: "none",
                             }}
+                            onClick={() => {
+                              navigate(`/send-project/${p.id}`);
+                            }}
                           >
-                            Upload
+                            View Project
                           </Button>
                         ) : (
                           <></>

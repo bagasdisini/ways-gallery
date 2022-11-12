@@ -66,7 +66,7 @@ function App() {
         <Route path="/upload-post" element={<Upload />} />
         <Route path="/my-order" element={<MyOrder />} />
         <Route path="/my-offer" element={<MyOffer />} />
-        <Route path="/send-project" element={<SendProject />} />
+        <Route path="/send-project/:id" element={<SendProject />} />
         <Route path="/view-project/:id" element={<ViewProject />} />
       </Routes>
     </CartProvider>

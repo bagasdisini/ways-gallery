@@ -196,7 +196,6 @@ function Page() {
             <Button
               type="submit"
               style={{ width: "100%", background: "#2FC4B2", border: "none" }}
-              onClick={{}}
             >
               Login
             </Button>
