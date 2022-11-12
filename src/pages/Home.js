@@ -14,6 +14,8 @@ function Page() {
 
   const [state, dispatch] = useContext(UserContext);
 
+  console.log(state);
+
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -27,6 +29,11 @@ function Page() {
     return response.data.data;
   });
 
+  const [filter, setFilter] = useState("null");
+  const handleFilterAll = () => setFilter("null");
+  const handleFilterFoll = () => setFilter(state.user.following);
+
+  console.log(post2);
   return (
     <div>
       <NavBar />
@@ -45,12 +52,14 @@ function Page() {
               }}
               className="px-3"
             >
-              Date &ensp;
+              Filter &ensp;
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Today</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Following</Dropdown.Item>
+              <Dropdown.Item onClick={handleFilterAll}>All</Dropdown.Item>
+              <Dropdown.Item onClick={handleFilterFoll}>
+                Following
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
@@ -67,35 +76,67 @@ function Page() {
             />
           </InputGroup>
         </div>
-        <p className="mt-5 fw-bold">Today's Post</p>
+        <p className="mt-4 fw-bold fs-5">
+          {filter !== "null" ? "Following Post" : "All Post"}
+        </p>
         <div className="d-flex flex-wrap justify-content-center">
-          {post2?.map((p) => (
-            <div
-              key={p.id}
-              className="m-1 bg-dark"
-              onClick={() => {
-                navigate(`/detail-post/${p.id}`);
-              }}
-            >
-              {p?.image1 ? (
-                <img
-                  src={"http://localhost:5000/uploads/" + p.image1}
-                  alt="a"
-                  width="200px"
-                  height="200px"
-                  style={{ objectFit: "cover" }}
-                ></img>
-              ) : (
-                <img
-                  src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
-                  alt="a"
-                  width="200px"
-                  height="200px"
-                  style={{ objectFit: "cover" }}
-                ></img>
-              )}
-            </div>
-          ))}
+          {post2?.map((p) =>
+            p?.userId?.id == filter ? (
+              <div
+                key={p.id}
+                className="m-1 bg-dark"
+                onClick={() => {
+                  navigate(`/detail-post/${p.id}`);
+                }}
+              >
+                {p?.image1 ? (
+                  <img
+                    src={"http://localhost:5000/uploads/" + p.image1}
+                    alt="a"
+                    width="200px"
+                    height="200px"
+                    style={{ objectFit: "cover" }}
+                  ></img>
+                ) : (
+                  <img
+                    src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                    alt="a"
+                    width="200px"
+                    height="200px"
+                    style={{ objectFit: "cover" }}
+                  ></img>
+                )}
+              </div>
+            ) : filter == "null" ? (
+              <div
+                key={p.id}
+                className="m-1 bg-dark"
+                onClick={() => {
+                  navigate(`/detail-post/${p.id}`);
+                }}
+              >
+                {p?.image1 ? (
+                  <img
+                    src={"http://localhost:5000/uploads/" + p.image1}
+                    alt="a"
+                    width="200px"
+                    height="200px"
+                    style={{ objectFit: "cover" }}
+                  ></img>
+                ) : (
+                  <img
+                    src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                    alt="a"
+                    width="200px"
+                    height="200px"
+                    style={{ objectFit: "cover" }}
+                  ></img>
+                )}
+              </div>
+            ) : (
+              <></>
+            )
+          )}
         </div>
       </div>
     </div>

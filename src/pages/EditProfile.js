@@ -166,7 +166,7 @@ function EditProfile() {
                   hidden
                   onChange={handleChange1}
                 />
-                <p>Upload Best Your Art</p>
+                <p className="fs-5"><span style={{color:"#2FC4B2"}}>Upload</span> Best Your Art</p>
               </div>
             </label>
           )}

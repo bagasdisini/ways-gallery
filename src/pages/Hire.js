@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-function EditProfile() {
+function Hire() {
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -151,4 +151,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default Hire;

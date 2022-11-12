@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useParams } from "react-router-dom";
 
-function EditProfile() {
+function SendProject() {
   const [state, dispatch] = useContext(UserContext);
   const [preview, setPreview] = useState(null);
   const [preview2, setPreview2] = useState(null);
@@ -191,7 +191,7 @@ function EditProfile() {
                 className="d-flex flex-column justify-content-center align-items-center"
               >
                 <img src={Upload} alt="aw" width="150px"></img>
-                <p>Browse to choose a file</p>
+                <p><span style={{color:"#2FC4B2"}}>Browse </span> to choose a file</p>
                 <input
                   type="file"
                   id="image1"
@@ -437,4 +437,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default SendProject;

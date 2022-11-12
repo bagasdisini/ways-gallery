@@ -44,7 +44,7 @@ function UploadPost() {
         e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
 
-    if (e.target.type == "file") {
+    if (e.target.type === "file") {
       const url = URL.createObjectURL(e.target.files[0]);
       setPreview(url);
     }
@@ -57,7 +57,7 @@ function UploadPost() {
         e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
 
-    if (e.target.type == "file") {
+    if (e.target.type === "file") {
       const url = URL.createObjectURL(e.target.files[0]);
       setPreview2(url);
     }
@@ -70,7 +70,7 @@ function UploadPost() {
         e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
 
-    if (e.target.type == "file") {
+    if (e.target.type === "file") {
       const url = URL.createObjectURL(e.target.files[0]);
       setPreview3(url);
     }
@@ -83,7 +83,7 @@ function UploadPost() {
         e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
 
-    if (e.target.type == "file") {
+    if (e.target.type === "file") {
       const url = URL.createObjectURL(e.target.files[0]);
       setPreview4(url);
     }
@@ -96,7 +96,7 @@ function UploadPost() {
         e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
 
-    if (e.target.type == "file") {
+    if (e.target.type === "file") {
       const url = URL.createObjectURL(e.target.files[0]);
       setPreview5(url);
     }
@@ -126,6 +126,7 @@ function UploadPost() {
       formData.set("desc", form.desc);
 
       const response = await API.post(`/post`, formData);
+      console.log(response);
 
       const auth = await API.get("/check-auth");
 
@@ -192,7 +193,7 @@ function UploadPost() {
                 className="d-flex flex-column justify-content-center align-items-center"
               >
                 <img src={Upload} alt="aw" width="150px"></img>
-                <p>Browse to choose a file</p>
+                <p className="fs-5"><span style={{color:"#2FC4B2"}}>Browse </span>to choose a file</p>
                 <input
                   type="file"
                   id="image1"
@@ -271,7 +272,6 @@ function UploadPost() {
                 htmlFor="image3"
                 style={{
                   border: "2px dashed grey",
-                  width: "23%",
                   height: "90px",
                   width: "90px",
                   borderRadius: "20px",
@@ -318,7 +318,6 @@ function UploadPost() {
                 htmlFor="image4"
                 style={{
                   border: "2px dashed grey",
-                  width: "23%",
                   height: "90px",
                   width: "90px",
                   borderRadius: "20px",

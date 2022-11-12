@@ -167,13 +167,13 @@ function Transaction() {
                         }}
                       >
                         {p.status === "pending" ? (
-                          "Pending"
+                        <span style={{ color: "orange" }}>Pending</span>
                         ) : p.status === "progress" ? (
-                          "Progress"
+                        <span style={{ color: "blue" }}>Progress</span>
                         ) : p.status === "cancel" ? (
-                          "Cancel"
+                         <span style={{ color: "red" }}>Cancel</span>
                         ) : p.status === "complete" ? (
-                          "Complete"
+                          <span style={{ color: "green" }}>Complete</span>
                         ) : (
                           <></>
                         )}
@@ -215,7 +215,7 @@ function Transaction() {
                               border: "none",
                             }}
                             onClick={() => {
-                              navigate(`/send-project/${p.id}`);
+                              navigate(`/view-project/${p.id}`);
                             }}
                           >
                             View Project

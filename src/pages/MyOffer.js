@@ -45,7 +45,10 @@ function Transaction() {
       const formData = new FormData();
       formData.set("status", form.status);
 
-      const response = await API.patch(`/transaction/${idTransaction}`, formData);
+      const response = await API.patch(
+        `/transaction/${idTransaction}`,
+        formData
+      );
 
       const auth = await API.get("/check-auth");
 
@@ -227,13 +230,13 @@ function Transaction() {
                         }}
                       >
                         {p.status === "pending" ? (
-                          "Pending"
+                        <span style={{ color: "orange" }}>Pending</span>
                         ) : p.status === "progress" ? (
-                          "Progress"
+                        <span style={{ color: "blue" }}>Progress</span>
                         ) : p.status === "cancel" ? (
-                          "Cancel"
+                         <span style={{ color: "red" }}>Cancel</span>
                         ) : p.status === "complete" ? (
-                          "Complete"
+                          <span style={{ color: "green" }}>Complete</span>
                         ) : (
                           <></>
                         )}

@@ -68,7 +68,7 @@ function MyProfile() {
               width="60px"
               height="60px"
             ></img>
-            <h5 className="mt-4 fw-bold">{state?.user?.name}</h5>
+            <h4 className="mt-4 fw-bold">{state?.user?.name}</h4>
             <h3 className="fw-bold mt-4">
               {state?.user?.greeting !== ""
                 ? state?.user?.greeting
@@ -113,7 +113,7 @@ function MyProfile() {
             position: "relative",
           }}
         >
-          <p className="fw-bold">My Works</p>
+          <p className="fw-bold fs-5">My Works</p>
           <div className="d-flex flex-wrap justify-content-center my-4">
             {posts?.map((p, index) => (
               <div

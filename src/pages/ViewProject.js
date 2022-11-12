@@ -1,78 +1,112 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { API } from "../config/api";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import BK from "../assets/BK.png";
-import Mockup from "../assets/mockup.png";
 import NavBar from "./NavBar";
-import toRupiah from "@develoka/angka-rupiah-js";
-import Dropdown from "react-bootstrap/Dropdown";
 
-function Detail({ addItem }) {
-  const [state] = useContext(UserContext);
-
-  const showToastMessage = () => {
-    toast.success("Sukses menambahkan ke keranjang!", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      theme: "light",
-    });
-  };
-
-  const [category, setCategory] = useState(1);
-
-  const handleCat1 = () => setCategory(1);
-  const handleCat2 = () => setCategory(2);
+function ViewProject() {
 
   useEffect(() => {
-    document.title = "Restaurant Menu";
+    document.title = "View Project";
   }, []);
 
   let { id } = useParams();
-  let { data: products } = useQuery("productsCache", async () => {
-    const response = await API.get("/products");
-    const response2 = response.data.data.filter((p) => p.admin_id == id);
-    return response2;
-  });
+  let { data: transaction2 } = useQuery(
+    "transaction2awdtCache",
+    async () => {
+      const response = await API.get("/transaction/" + id);
+      return response.data.data;
+    }
+  );
 
   return (
     <div>
       <NavBar />
       <div
-        className="mx-auto d-flex mt-4"
+        className="mx-auto d-flex mt-4 justify-content-evenly"
         style={{
           marginTop: "10px",
           height: "90%",
           width: "70%",
         }}
       >
-        <div className="mx-auto">
-        <img src={Mockup} style={{ width: "50%" }}></img>
-        <img
-          src={Mockup}
-          style={{
-            width: "13%",
-            height: "100px",
-            objectFit: "cover",
-            display: "block",
-            margin: "10px 0 30px",
-          }}
-        ></img></div>
-        <div style={{marginLeft:"-400px"}}>
-          <p className="mb-5">
-            Hey, guys! Super excited to share my new web app interface and
-            elements that I recently worked on. Hope you enjoyed it. Thanks for
-            your likes and comments!
+        <div className="mx-auto" style={{ width: "45%" }}>
+          <img
+            src={
+              transaction2?.image1
+                ? "http://localhost:5000/uploads/" + transaction2?.image1
+                : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+            }
+            style={{ width: "100%" }}
+            alt="a"
+          ></img>
+          <div className="d-flex justify-content-center mb-4">
+            {transaction2?.image2 ? (
+              <img
+                src={"http://localhost:5000/uploads/" + transaction2?.image2}
+                style={{
+                  width: "22%",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "7px",
+                }}
+                alt="a"
+              ></img>
+            ) : (
+              <></>
+            )}
+            {transaction2?.image3 ? (
+              <img
+                src={"http://localhost:5000/uploads/" + transaction2?.image3}
+                style={{
+                  width: "22%",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "7px",
+                }}
+                alt="a"
+              ></img>
+            ) : (
+              <></>
+            )}
+            {transaction2?.image4 ? (
+              <img
+                src={"http://localhost:5000/uploads/" + transaction2?.image4}
+                style={{
+                  width: "22%",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "7px",
+                }}
+                alt="a"
+              ></img>
+            ) : (
+              <></>
+            )}
+            {transaction2?.image5 ? (
+              <img
+                src={"http://localhost:5000/uploads/" + transaction2?.image5}
+                style={{
+                  width: "22%",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "7px",
+                }}
+                alt="a"
+              ></img>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+        <div style={{ width: "45%" }}>
+          <p className="mt-1 fs-4">
+            {transaction2?.projectDesc}
           </p>
         </div>
       </div>
@@ -80,4 +114,4 @@ function Detail({ addItem }) {
   );
 }
 
-export default Detail;
+export default ViewProject;

@@ -23,16 +23,18 @@ function Detail() {
     return response.data.data;
   });
 
-  console.log(state);
+  const [form1] = useState({
+    following: "null",
+  });
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
 
       const formData = new FormData();
-      formData.set("following", post?.userId?.id);
+      formData.set("following", post.userId.id);
 
-      const response = await API.patch(`/user/${state?.user?.id}`, formData);
+      const response = await API.patch(`/user/${state?.user.id}`, formData);
 
       const auth = await API.get("/check-auth");
 
@@ -42,7 +44,30 @@ function Detail() {
         type: "USER_SUCCESS",
         payload,
       });
-      navigate("/home");
+
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit1 = async (e) => {
+    try {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.set("following", form1.following);
+
+      const response = await API.patch(`/user/${state?.user.id}`, formData);
+
+      const auth = await API.get("/check-auth");
+
+      let payload = auth.data.data;
+
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
 
       refetch();
     } catch (error) {
@@ -103,22 +128,45 @@ function Detail() {
               >
                 Hire
               </Button>
-              <Button
-                type="submit"
-                className="px-4 me-4"
-                style={{
-                  background: "#E7E7E7",
-                  border: "none",
-                  color: "black",
-                  float: "right",
-                }}
-                onClick={(e) => {
-                  handleSubmit(e);
-                  refetch();
-                }}
-              >
-                Follow
-              </Button>
+
+              {state?.user?.following == "null" ? (
+                <Button
+                  type="submit"
+                  className="px-4 me-4"
+                  style={{
+                    background: "#E7E7E7",
+                    border: "none",
+                    color: "black",
+                    float: "right",
+                  }}
+                  onClick={(e) => {
+                    handleSubmit(e);
+                  }}
+                >
+                  Follow
+                </Button>
+              ) : (
+                <></>
+              )}
+
+              {state?.user?.following == post?.userId?.id ? (
+                <Button
+                  type="submit"
+                  className="px-4 me-4"
+                  style={{
+                    background: "#2FC4B2",
+                    border: "none",
+                    float: "right",
+                  }}
+                  onClick={(e) => {
+                    handleSubmit1(e);
+                  }}
+                >
+                  UnFollow
+                </Button>
+              ) : (
+                <></>
+              )}
             </div>
           ) : (
             <div></div>
@@ -190,7 +238,7 @@ function Detail() {
             <></>
           )}
         </div>
-        <p className="fw-bold fs-5">👋 Say Hello {post?.userId?.email}</p>
+        <p className="fw-bold fs-5">👋 Say Hello <span style={{color:"#2FC4B2"}}> {post?.userId?.email}</span></p>
         <p className="mb-5 fs-5">{post?.desc}</p>
       </div>
     </div>

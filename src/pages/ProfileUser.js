@@ -9,7 +9,7 @@ import Detail from "../assets/detail.png";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-function EditProfile() {
+function ProfileUser() {
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -164,4 +164,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default ProfileUser;

@@ -11,6 +11,7 @@ import { useMutation } from "react-query";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import Button from "react-bootstrap/Button";
+import { ToastContainer, toast } from "react-toastify";
 
 function Page() {
   const navigate = useNavigate();
@@ -24,6 +25,42 @@ function Page() {
   const handleShow1 = () => setShow1(true);
 
   const [state, dispatch] = useContext(UserContext);
+
+  const showToastMessage1 = () => {
+    toast.error("Gagal Register!", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: "light",
+    });
+  };
+
+  const showToastMessage2 = () => {
+    toast.error("Email/password salah!", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: "light",
+    });
+  };
+
+  const showToastMessage = () => {
+    toast.success("Berhasil Register!", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: "light",
+    });
+  };
 
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -56,18 +93,13 @@ function Page() {
 
       const response = await API.post("/register", form);
 
-      const alert = <Alert variant="success">Berhasil register!</Alert>;
-
-      setMessage(alert);
+      showToastMessage();
 
       setShow(false);
       setShow1(true);
-
     } catch (e) {
       console.log(e);
-      const alert = <Alert variant="danger">Register gagal!</Alert>;
-
-      setMessage(alert);
+      showToastMessage1();
     }
   });
 
@@ -87,8 +119,7 @@ function Page() {
       navigate("/home");
       setShow1(false);
     } catch (error) {
-      const alert11 = <Alert variant="danger">Email/Password Salah!</Alert>;
-      setMessage(alert11);
+      showToastMessage2();
     }
   });
 
@@ -102,6 +133,18 @@ function Page() {
         backgroundColor: "#fffff",
       }}
     >
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           {message && message}
@@ -148,16 +191,16 @@ function Page() {
           </Form>
           <div className="d-flex justify-content-center mx-auto">
             <p>
-              Already have an account ? Click{" "}
+              Already have an account ?{" "}
               <button
                 onClick={() => {
                   handleShow1();
                   handleClose();
                 }}
                 style={{ border: "none", backgroundColor: "white" }}
-                className="p-0 fw-bold"
+                className="p-0 fw-bold ms-1"
               >
-                here
+                Click here
               </button>
             </p>
           </div>
@@ -202,16 +245,16 @@ function Page() {
           </Form>
           <div className="d-flex justify-content-center mx-auto">
             <p>
-              Don't have an account ? Click{" "}
+              Don't have an account ?
               <button
                 onClick={() => {
                   handleShow();
                   handleClose1();
                 }}
                 style={{ border: "none", backgroundColor: "white" }}
-                className="p-0 fw-bold"
+                className="p-0 fw-bold ms-1 "
               >
-                here
+                Click here
               </button>
             </p>
           </div>
@@ -227,18 +270,17 @@ function Page() {
             src={Landing123}
             alt="pizza"
             className="mt-5 align-self-start"
-            width="200px"
+            width="250px"
           />
           <div className="mb-5">
-            <p style={{ fontSize: "20px" }} className="mt-2 fw-bold">
+            <p style={{ fontSize: "25px" }} className="mt-2 fw-bold">
               Show Your Work To Inspire Everyone
             </p>
             <div>
               <Button
                 style={{
                   backgroundColor: "#2FC4B2",
-                  fontSize: "12px",
-                  width: "100px",
+                  fontSize: "15px",
                   border: "none",
                 }}
                 onClick={handleShow}
@@ -250,8 +292,7 @@ function Page() {
                 style={{
                   backgroundColor: "#E7E7E7",
                   color: "black",
-                  fontSize: "12px",
-                  width: "100px",
+                  fontSize: "15px",
                   border: "none",
                 }}
                 className="px-4 py-1 fw-bold"
