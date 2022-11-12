@@ -7,8 +7,6 @@ import { useQuery } from "react-query";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import NavBar from "./NavBar";
-import Pending from "../assets/pending.png";
-import Sukses from "../assets/sukses.png";
 import Button from "react-bootstrap/Button";
 import Cancel from "../assets/cancel.png";
 
@@ -44,7 +42,10 @@ function Transaction() {
     try {
       e.preventDefault();
 
-      const response = await API.patch(`/transaction/${idTransaction}`, form);
+      const formData = new FormData();
+      formData.set("status", form.status);
+
+      const response = await API.patch(`/transaction/${idTransaction}`, formData);
 
       const auth = await API.get("/check-auth");
 
@@ -66,9 +67,12 @@ function Transaction() {
     try {
       e.preventDefault();
 
+      const formData = new FormData();
+      formData.set("status", formProgress.status);
+
       const response = await API.patch(
         `/transaction/${idTransaction}`,
-        formProgress
+        formData
       );
 
       const auth = await API.get("/check-auth");
