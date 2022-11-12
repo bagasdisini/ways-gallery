@@ -38,8 +38,6 @@ function EditProfile() {
     return response.data.data;
   });
 
-  console.log(form);
-
   useEffect(() => {
     if (user) {
       setForm({

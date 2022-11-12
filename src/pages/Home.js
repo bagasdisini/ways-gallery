@@ -33,7 +33,6 @@ function Page() {
   const handleFilterAll = () => setFilter("null");
   const handleFilterFoll = () => setFilter(state.user.following);
 
-  console.log(post2);
   return (
     <div>
       <NavBar />

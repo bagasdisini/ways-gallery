@@ -35,8 +35,6 @@ function UploadPost() {
     image5: "",
   });
 
-  console.log(form);
-
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -126,7 +124,6 @@ function UploadPost() {
       formData.set("desc", form.desc);
 
       const response = await API.post(`/post`, formData);
-      console.log(response);
 
       const auth = await API.get("/check-auth");
 
