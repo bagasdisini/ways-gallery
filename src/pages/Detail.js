@@ -184,7 +184,7 @@ function Detail() {
           }
           style={{ width: "100%" }}
         ></img>
-        <a href={post?.image1}> Download</a>
+        <a href={post?.image1} target="_blank"></a>
         <div className="d-flex justify-content-center mb-4">
           {post?.image2 ? (
             <img
