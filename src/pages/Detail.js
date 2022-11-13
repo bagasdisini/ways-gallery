@@ -185,11 +185,11 @@ function Detail() {
             <img
               src={"http://localhost:5000/uploads/" + post?.image2}
               style={{
-                width: "20%",
+                width: "100px",
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "10px",
+                margin: "5px",
               }}
             ></img>
           ) : (
@@ -199,11 +199,11 @@ function Detail() {
             <img
               src={"http://localhost:5000/uploads/" + post?.image3}
               style={{
-                width: "20%",
+                width: "100px",
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "10px",
+                margin: "5px",
               }}
             ></img>
           ) : (
@@ -213,11 +213,11 @@ function Detail() {
             <img
               src={"http://localhost:5000/uploads/" + post?.image4}
               style={{
-                width: "20%",
+                width: "100px",
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "10px",
+                margin: "5px",
               }}
             ></img>
           ) : (
@@ -227,11 +227,11 @@ function Detail() {
             <img
               src={"http://localhost:5000/uploads/" + post?.image5}
               style={{
-                width: "20%",
+                width: "100px",
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "10px",
+                margin: "5px",
               }}
             ></img>
           ) : (

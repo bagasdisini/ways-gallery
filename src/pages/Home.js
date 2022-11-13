@@ -83,7 +83,7 @@ function Page() {
             p?.userId?.id == filter ? (
               <div
                 key={p.id}
-                className="m-1 bg-dark"
+                style={{margin:"2px"}}
                 onClick={() => {
                   navigate(`/detail-post/${p.id}`);
                 }}
@@ -109,7 +109,7 @@ function Page() {
             ) : filter == "null" ? (
               <div
                 key={p.id}
-                className="m-1 bg-dark"
+                style={{margin:"2px"}}
                 onClick={() => {
                   navigate(`/detail-post/${p.id}`);
                 }}

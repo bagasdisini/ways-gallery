@@ -46,11 +46,11 @@ function ViewProject() {
               <img
                 src={"http://localhost:5000/uploads/" + transaction2?.image2}
                 style={{
-                  width: "22%",
+                  width: "100px",
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "7px",
+                  margin: "5px",
                 }}
                 alt="a"
               ></img>
@@ -61,11 +61,11 @@ function ViewProject() {
               <img
                 src={"http://localhost:5000/uploads/" + transaction2?.image3}
                 style={{
-                  width: "22%",
+                  width: "100px",
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "7px",
+                  margin: "5px",
                 }}
                 alt="a"
               ></img>
@@ -76,11 +76,11 @@ function ViewProject() {
               <img
                 src={"http://localhost:5000/uploads/" + transaction2?.image4}
                 style={{
-                  width: "22%",
+                  width: "100px",
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "7px",
+                  margin: "5px",
                 }}
                 alt="a"
               ></img>
@@ -91,11 +91,11 @@ function ViewProject() {
               <img
                 src={"http://localhost:5000/uploads/" + transaction2?.image5}
                 style={{
-                  width: "22%",
+                  width: "100px",
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "7px",
+                  margin: "5px",
                 }}
                 alt="a"
               ></img>
