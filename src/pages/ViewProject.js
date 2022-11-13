@@ -28,73 +28,83 @@ function ViewProject() {
         }}
       >
         <div className="mx-auto" style={{ width: "45%" }}>
-          <img
-            src={
-              transaction2?.image1
-                ? transaction2?.image1
-                : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
-            }
-            style={{ width: "100%" }}
-            alt="a"
-          ></img>
+          <a href={transaction2?.image1} target="_blank">
+            <img
+              src={
+                transaction2?.image1
+                  ? transaction2?.image1
+                  : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+              }
+              style={{ width: "100%" }}
+              alt="a"
+            ></img>{" "}
+          </a>
           <div className="d-flex justify-content-center mb-4">
             {transaction2?.image2 ? (
-              <img
-                src={transaction2?.image2}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  display: "block",
-                  margin: "5px 2px",
-                }}
-                alt="a"
-              ></img>
+              <a href={transaction2?.image2} target="_blank">
+                <img
+                  src={transaction2?.image2}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    display: "block",
+                    margin: "5px 2px",
+                  }}
+                  alt="a"
+                ></img>{" "}
+              </a>
             ) : (
               <></>
             )}
             {transaction2?.image3 ? (
-              <img
-                src={transaction2?.image3}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  display: "block",
-                  margin: "5px 2px",
-                }}
-                alt="a"
-              ></img>
+              <a href={transaction2?.image3} target="_blank">
+                <img
+                  src={transaction2?.image3}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    display: "block",
+                    margin: "5px 2px",
+                  }}
+                  alt="a"
+                ></img>{" "}
+              </a>
             ) : (
               <></>
             )}
             {transaction2?.image4 ? (
-              <img
-                src={transaction2?.image4}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  display: "block",
-                  margin: "5px 2px",
-                }}
-                alt="a"
-              ></img>
+              <a href={transaction2?.image4} target="_blank">
+                <img
+                  src={transaction2?.image4}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    display: "block",
+                    margin: "5px 2px",
+                  }}
+                  alt="a"
+                ></img>
+              </a>
             ) : (
               <></>
             )}
             {transaction2?.image5 ? (
-              <img
-                src={transaction2?.image5}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  display: "block",
-                  margin: "5px 2px",
-                }}
-                alt="a"
-              ></img>
+              <a href={transaction2?.image5} target="_blank">
+                <img
+                  src={transaction2?.image5}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    display: "block",
+                    margin: "5px 2px",
+                  }}
+                  alt="a"
+                ></img>
+              </a>
             ) : (
               <></>
             )}

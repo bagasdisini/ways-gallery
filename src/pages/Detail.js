@@ -177,68 +177,77 @@ function Detail() {
           )}
         </div>
         <a href={post?.image1} target="_blank">
-        <img
-          src={
-            post?.image1
-              ? post?.image1
-              : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
-          }
-          style={{ width: "100%" }}
-        ></img></a>
+          <img
+            src={
+              post?.image1
+                ? post?.image1
+                : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+            }
+            style={{ width: "100%" }}
+          ></img>
+        </a>
         <div className="d-flex justify-content-center mb-4">
           {post?.image2 ? (
-            <img
-              src={post?.image2}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                display: "block",
-                margin: "5px 2px",
-              }}
-            ></img>
+            <a href={post?.image2} target="_blank">
+              <img
+                src={post?.image2}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "5px 2px",
+                }}
+              ></img>
+            </a>
           ) : (
             <></>
           )}
           {post?.image3 ? (
-            <img
-              src={post?.image3}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                display: "block",
-                margin: "5px 2px",
-              }}
-            ></img>
+            <a href={post?.image3} target="_blank">
+              <img
+                src={post?.image3}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "5px 2px",
+                }}
+              ></img>
+            </a>
           ) : (
             <></>
           )}
           {post?.image4 ? (
-            <img
-              src={post?.image4}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                display: "block",
-                margin: "5px 2px",
-              }}
-            ></img>
+            <a href={post?.image4} target="_blank">
+              <img
+                src={post?.image4}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "5px 2px",
+                }}
+              ></img>
+            </a>
           ) : (
             <></>
           )}
           {post?.image5 ? (
-            <img
-              src={post?.image5}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                display: "block",
-                margin: "5px 2px",
-              }}
-            ></img>
+            <a href={post?.image5} target="_blank">
+              <img
+                src={post?.image5}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                  display: "block",
+                  margin: "5px 2px",
+                }}
+              ></img>
+            </a>
           ) : (
             <></>
           )}
