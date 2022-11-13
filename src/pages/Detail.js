@@ -89,7 +89,11 @@ function Detail() {
         <div className="d-flex align-items-center justify-content-between my-4">
           <div className="d-flex align-items-center">
             <img
-              src={post?.userId?.image}
+              src={
+                post?.userId?.image === ""
+                  ? "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                  : post?.userId?.image
+              }
               style={{ borderRadius: "50px" }}
               width="60px"
             ></img>
@@ -238,7 +242,10 @@ function Detail() {
             <></>
           )}
         </div>
-        <p className="fw-bold fs-5">👋 Say Hello <span style={{color:"#2FC4B2"}}> {post?.userId?.email}</span></p>
+        <p className="fw-bold fs-5">
+          👋 Say Hello{" "}
+          <span style={{ color: "#2FC4B2" }}> {post?.userId?.email}</span>
+        </p>
         <p className="mb-5 fs-5">{post?.desc}</p>
       </div>
     </div>
