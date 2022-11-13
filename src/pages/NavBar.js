@@ -82,7 +82,7 @@ function Navigation() {
           >
             <img
               src={
-                state.user.image === "http://localhost:5000/uploads/"
+                state.user.image === ""
                   ? "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                   : state.user.image
               }

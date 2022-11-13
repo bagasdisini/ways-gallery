@@ -31,7 +31,7 @@ function ViewProject() {
           <img
             src={
               transaction2?.image1
-                ? "http://localhost:5000/uploads/" + transaction2?.image1
+                ? transaction2?.image1
                 : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
             }
             style={{ width: "100%" }}
@@ -40,7 +40,7 @@ function ViewProject() {
           <div className="d-flex justify-content-center mb-4">
             {transaction2?.image2 ? (
               <img
-                src={"http://localhost:5000/uploads/" + transaction2?.image2}
+                src={transaction2?.image2}
                 style={{
                   width: "100px",
                   height: "100px",
@@ -55,7 +55,7 @@ function ViewProject() {
             )}
             {transaction2?.image3 ? (
               <img
-                src={"http://localhost:5000/uploads/" + transaction2?.image3}
+                src={transaction2?.image3}
                 style={{
                   width: "100px",
                   height: "100px",
@@ -70,7 +70,7 @@ function ViewProject() {
             )}
             {transaction2?.image4 ? (
               <img
-                src={"http://localhost:5000/uploads/" + transaction2?.image4}
+                src={transaction2?.image4}
                 style={{
                   width: "100px",
                   height: "100px",
@@ -85,7 +85,7 @@ function ViewProject() {
             )}
             {transaction2?.image5 ? (
               <img
-                src={"http://localhost:5000/uploads/" + transaction2?.image5}
+                src={transaction2?.image5}
                 style={{
                   width: "100px",
                   height: "100px",

@@ -55,7 +55,7 @@ function MyProfile() {
           >
             <img
               src={
-                state?.user?.image === "http://localhost:5000/uploads/"
+                state?.user?.image === ""
                   ? "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                   : state?.user?.image
               }
@@ -91,7 +91,7 @@ function MyProfile() {
           </div>
           <img
             src={
-              state?.user?.bestArt === "http://localhost:5000/uploads/"
+              state?.user?.bestArt === ""
                 ? "https://prosportsoutlook.com/wp-content/themes/prosports/images/default-post-pic.png"
                 : state?.user?.bestArt
             }
@@ -125,7 +125,7 @@ function MyProfile() {
               >
                 {p?.image1 ? (
                   <img
-                    src={"http://localhost:5000/uploads/" + p?.image1}
+                    src={p?.image1}
                     alt="a"
                     width="200px"
                     height="200px"

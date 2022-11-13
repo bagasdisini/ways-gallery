@@ -89,7 +89,7 @@ function Detail() {
         <div className="d-flex align-items-center justify-content-between my-4">
           <div className="d-flex align-items-center">
             <img
-              src={"http://localhost:5000/uploads/" + post?.userId?.image}
+              src={post?.userId?.image}
               style={{ borderRadius: "50px" }}
               width="60px"
             ></img>
@@ -175,7 +175,7 @@ function Detail() {
         <img
           src={
             post?.image1
-              ? "http://localhost:5000/uploads/" + post?.image1
+              ? post?.image1
               : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
           }
           style={{ width: "100%" }}
@@ -183,7 +183,7 @@ function Detail() {
         <div className="d-flex justify-content-center mb-4">
           {post?.image2 ? (
             <img
-              src={"http://localhost:5000/uploads/" + post?.image2}
+              src={post?.image2}
               style={{
                 width: "100px",
                 height: "100px",
@@ -197,7 +197,7 @@ function Detail() {
           )}
           {post?.image3 ? (
             <img
-              src={"http://localhost:5000/uploads/" + post?.image3}
+              src={post?.image3}
               style={{
                 width: "100px",
                 height: "100px",
@@ -211,7 +211,7 @@ function Detail() {
           )}
           {post?.image4 ? (
             <img
-              src={"http://localhost:5000/uploads/" + post?.image4}
+              src={post?.image4}
               style={{
                 width: "100px",
                 height: "100px",
@@ -225,7 +225,7 @@ function Detail() {
           )}
           {post?.image5 ? (
             <img
-              src={"http://localhost:5000/uploads/" + post?.image5}
+              src={post?.image5}
               style={{
                 width: "100px",
                 height: "100px",

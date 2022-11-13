@@ -140,7 +140,7 @@ function ProfileUser() {
               >
                 {p?.image1 ? (
                   <img
-                    src={"http://localhost:5000/uploads/" + p?.image1}
+                    src={"" + p?.image1}
                     alt="a"
                     width="200px"
                     height="200px"
