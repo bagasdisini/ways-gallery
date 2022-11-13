@@ -109,7 +109,7 @@ function MyProfile() {
           className="mx-auto mt-5"
           style={{
             height: "90%",
-            width: "60%",
+            width: "70%",
             position: "relative",
           }}
         >
@@ -118,7 +118,7 @@ function MyProfile() {
             {posts?.map((p, index) => (
               <div
                 key={index}
-                className="m-3"
+                className="m-1"
                 onClick={() => {
                   navigate(`/detail-post/${p.id}`);
                 }}

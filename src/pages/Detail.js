@@ -189,7 +189,7 @@ function Detail() {
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "5px",
+                margin: "5px 2px",
               }}
             ></img>
           ) : (
@@ -203,7 +203,7 @@ function Detail() {
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "5px",
+                margin: "5px 2px",
               }}
             ></img>
           ) : (
@@ -217,7 +217,7 @@ function Detail() {
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "5px",
+                margin: "5px 2px",
               }}
             ></img>
           ) : (
@@ -231,7 +231,7 @@ function Detail() {
                 height: "100px",
                 objectFit: "cover",
                 display: "block",
-                margin: "5px",
+                margin: "5px 2px",
               }}
             ></img>
           ) : (

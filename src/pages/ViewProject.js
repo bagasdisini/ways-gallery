@@ -2,23 +2,19 @@ import React, { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { API } from "../config/api";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import NavBar from "./NavBar";
 
 function ViewProject() {
-
   useEffect(() => {
     document.title = "View Project";
   }, []);
 
   let { id } = useParams();
-  let { data: transaction2 } = useQuery(
-    "transaction2awdtCache",
-    async () => {
-      const response = await API.get("/transaction/" + id);
-      return response.data.data;
-    }
-  );
+  let { data: transaction2 } = useQuery("transaction2awdtCache", async () => {
+    const response = await API.get("/transaction/" + id);
+    return response.data.data;
+  });
 
   return (
     <div>
@@ -50,7 +46,7 @@ function ViewProject() {
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "5px",
+                  margin: "5px 2px",
                 }}
                 alt="a"
               ></img>
@@ -65,7 +61,7 @@ function ViewProject() {
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "5px",
+                  margin: "5px 2px",
                 }}
                 alt="a"
               ></img>
@@ -80,7 +76,7 @@ function ViewProject() {
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "5px",
+                  margin: "5px 2px",
                 }}
                 alt="a"
               ></img>
@@ -95,7 +91,7 @@ function ViewProject() {
                   height: "100px",
                   objectFit: "cover",
                   display: "block",
-                  margin: "5px",
+                  margin: "5px 2px",
                 }}
                 alt="a"
               ></img>
@@ -105,9 +101,7 @@ function ViewProject() {
           </div>
         </div>
         <div style={{ width: "45%" }}>
-          <p className="mt-1 fs-4">
-            {transaction2?.projectDesc}
-          </p>
+          <p className="mt-1 fs-4">{transaction2?.projectDesc}</p>
         </div>
       </div>
     </div>
