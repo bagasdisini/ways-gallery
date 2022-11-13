@@ -14,7 +14,7 @@ function Page() {
 
   const [state, dispatch] = useContext(UserContext);
 
-  console.log(state);
+  const [query, setQuery] = useState("")
 
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -72,6 +72,7 @@ function Page() {
                 borderStyle: "none",
                 borderRadius: "6px",
               }}
+              onChange={(e)=> setQuery(e.target.value)}
             />
           </InputGroup>
         </div>
@@ -79,63 +80,70 @@ function Page() {
           {filter !== "null" ? "Following Post" : "All Post"}
         </p>
         <div className="d-flex flex-wrap justify-content-center">
-          {post2?.map((p) =>
-            p?.userId?.id == filter ? (
-              <div
-                key={p.id}
-                style={{margin:"2px"}}
-                onClick={() => {
-                  navigate(`/detail-post/${p.id}`);
-                }}
-              >
-                {p?.image1 ? (
-                  <img
-                    src={p.image1}
-                    alt="a"
-                    width="200px"
-                    height="200px"
-                    style={{ objectFit: "cover" }}
-                  ></img>
-                ) : (
-                  <img
-                    src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
-                    alt="a"
-                    width="200px"
-                    height="200px"
-                    style={{ objectFit: "cover" }}
-                  ></img>
-                )}
-              </div>
-            ) : filter == "null" ? (
-              <div
-                key={p.id}
-                style={{margin:"2px"}}
-                onClick={() => {
-                  navigate(`/detail-post/${p.id}`);
-                }}
-              >
-                {p?.image1 ? (
-                  <img
-                    src={p.image1}
-                    alt="a"
-                    width="200px"
-                    height="200px"
-                    style={{ objectFit: "cover" }}
-                  ></img>
-                ) : (
-                  <img
-                    src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
-                    alt="a"
-                    width="200px"
-                    height="200px"
-                    style={{ objectFit: "cover" }}
-                  ></img>
-                )}
-              </div>
-            ) : (
-              <></>
-            )
-          )}
+          {post2
+            ?.filter((o) => {
+              return query.toLocaleLowerCase() === ""
+                ? o
+                : o.title.toLocaleLowerCase().includes(query);
+            })
+
+            .map((p) =>
+              p?.userId?.id == filter ? (
+                <div
+                  key={p.id}
+                  style={{ margin: "2px" }}
+                  onClick={() => {
+                    navigate(`/detail-post/${p.id}`);
+                  }}
+                >
+                  {p?.image1 ? (
+                    <img
+                      src={p.image1}
+                      alt="a"
+                      width="200px"
+                      height="200px"
+                      style={{ objectFit: "cover" }}
+                    ></img>
+                  ) : (
+                    <img
+                      src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                      alt="a"
+                      width="200px"
+                      height="200px"
+                      style={{ objectFit: "cover" }}
+                    ></img>
+                  )}
+                </div>
+              ) : filter == "null" ? (
+                <div
+                  key={p.id}
+                  style={{ margin: "2px" }}
+                  onClick={() => {
+                    navigate(`/detail-post/${p.id}`);
+                  }}
+                >
+                  {p?.image1 ? (
+                    <img
+                      src={p.image1}
+                      alt="a"
+                      width="200px"
+                      height="200px"
+                      style={{ objectFit: "cover" }}
+                    ></img>
+                  ) : (
+                    <img
+                      src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                      alt="a"
+                      width="200px"
+                      height="200px"
+                      style={{ objectFit: "cover" }}
+                    ></img>
+                  )}
+                </div>
+              ) : (
+                <></>
+              )
+            )}
         </div>
       </div>
     </div>
