@@ -101,7 +101,7 @@ function Transaction() {
         className="d-flex justify-content-center align-items-center mx-auto"
         style={{ marginTop: "10px" }}
       >
-        <div style={{ width: "90%" }}>
+        <div style={{ width: "95%" }}>
           <div className="mt-5">
             <h2 className="my-4">My Offer</h2>
             <div>
@@ -152,6 +152,15 @@ function Transaction() {
                       }}
                     >
                       End Project
+                    </th>
+                    <th
+                      style={{
+                        wordBreak: "break-all",
+                        textAlign: "center",
+                        verticalAlign: "middle",
+                      }}
+                    >
+                      Price
                     </th>
                     <th
                       style={{
@@ -221,6 +230,15 @@ function Transaction() {
                         }}
                       >
                         {p.endDate}
+                      </td>
+                      <td
+                        style={{
+                          wordBreak: "break-all",
+                          textAlign: "center",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        {p.price}
                       </td>
                       <td
                         style={{

@@ -97,6 +97,15 @@ function Transaction() {
                         verticalAlign: "middle",
                       }}
                     >
+                      Price
+                    </th>
+                    <th
+                      style={{
+                        wordBreak: "break-all",
+                        textAlign: "center",
+                        verticalAlign: "middle",
+                      }}
+                    >
                       Status
                     </th>
                     <th
@@ -158,6 +167,15 @@ function Transaction() {
                         }}
                       >
                         {p.endDate}
+                      </td>
+                      <td
+                        style={{
+                          wordBreak: "break-all",
+                          textAlign: "center",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        {p.price}
                       </td>
                       <td
                         style={{

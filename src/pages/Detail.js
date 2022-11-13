@@ -166,7 +166,7 @@ function Detail() {
                     handleSubmit1(e);
                   }}
                 >
-                  UnFollow
+                  Unfollow
                 </Button>
               ) : (
                 <></>
