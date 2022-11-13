@@ -176,6 +176,7 @@ function Detail() {
             <div></div>
           )}
         </div>
+        <a href={post?.image1} target="_blank">
         <img
           src={
             post?.image1
@@ -183,7 +184,7 @@ function Detail() {
               : "https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
           }
           style={{ width: "100%" }}
-        ></img>
+        ></img></a>
         <div className="d-flex justify-content-center mb-4">
           {post?.image2 ? (
             <img
