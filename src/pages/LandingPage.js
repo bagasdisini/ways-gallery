@@ -277,8 +277,10 @@ function Page() {
               Show Your Work To Inspire Everyone
             </p>
             <p style={{ fontSize: "18px" }} className="mt-2">
-              Ways Exhibition is a website design creators gather to share their
-              work with other creators{" "}
+              Ways Exhibition is a website design creators gather{" "}
+            </p>
+            <p style={{ fontSize: "18px" }} className="mt-2">
+              to share their work with other creators{" "}
             </p>
             <div>
               <Button
