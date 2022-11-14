@@ -133,7 +133,7 @@ function Detail() {
                 Hire
               </Button>
 
-              {state?.user?.following == "none" ? (
+              {state?.user?.following !== post?.userId?.id ? (
                 <Button
                   type="submit"
                   className="px-4 me-4"
