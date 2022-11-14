@@ -279,7 +279,7 @@ function Page() {
             <p style={{ fontSize: "18px" }} className="mt-2">
               Ways Exhibition is a website design creators gather{" "}
             </p>
-            <p style={{ fontSize: "18px" }}>
+            <p style={{ fontSize: "18px", marginTop:"-10px" }}>
               to share their work with other creators{" "}
             </p>
             <div>
