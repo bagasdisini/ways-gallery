@@ -24,7 +24,7 @@ function Detail() {
   });
 
   const [form1] = useState({
-    following: "null",
+    following: "none",
   });
 
   const handleSubmit = async (e) => {
@@ -133,7 +133,7 @@ function Detail() {
                 Hire
               </Button>
 
-              {state?.user?.following == "null" ? (
+              {state?.user?.following == "none" ? (
                 <Button
                   type="submit"
                   className="px-4 me-4"
