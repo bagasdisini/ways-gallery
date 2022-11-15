@@ -25,11 +25,11 @@ function Detail() {
       type: "LOAD_ERROR",
     });
     const response = await API.get("/post/" + id);
-    return response.data.data;
 
     dispatchLoad({
       type: "LOAD_SUCCESS",
     });
+    return response.data.data;
   });
 
   const [form1] = useState({
