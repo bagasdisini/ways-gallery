@@ -21,8 +21,15 @@ function Detail() {
 
   let { id } = useParams();
   let { data: post, refetch } = useQuery("posttCache", async () => {
+    dispatchLoad({
+      type: "LOAD_ERROR",
+    });
     const response = await API.get("/post/" + id);
     return response.data.data;
+
+    dispatchLoad({
+      type: "LOAD_SUCCESS",
+    });
   });
 
   const [form1] = useState({
@@ -45,10 +52,6 @@ function Detail() {
       dispatch({
         type: "USER_SUCCESS",
         payload,
-      });
-
-      dispatchLoad({
-        type: "LOAD_ERROR",
       });
 
       refetch();
@@ -75,10 +78,6 @@ function Detail() {
         payload,
       });
 
-      dispatchLoad({
-        type: "LOAD_SUCCESS",
-      });
-
       refetch();
     } catch (error) {
       console.log(error);
@@ -96,9 +95,9 @@ function Detail() {
           width: "40%",
         }}
       >
-        {stateLoad}
         <div className="d-flex align-items-center justify-content-between my-4">
           <div className="d-flex align-items-center">
+            {stateLoad}
             <img
               src={
                 post?.userId?.image === ""
