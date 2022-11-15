@@ -9,6 +9,8 @@ import { UserContext } from "../context/UserContext";
 import NavBar from "./NavBar";
 import Button from "react-bootstrap/Button";
 import Cancel from "../assets/cancel.png";
+import toRupiah from "@develoka/angka-rupiah-js";
+import Moment from "react-moment";
 
 function Transaction() {
   useEffect(() => {
@@ -220,7 +222,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.startDate}
+                        <Moment format="DDDD/MMM/YYYY">{p.startDate}</Moment>
                       </td>
                       <td
                         style={{
@@ -238,7 +240,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.price}
+                        {toRupiah(p.price, { dot: ",", floatingPoint: 0 })}
                       </td>
                       <td
                         style={{
@@ -248,11 +250,11 @@ function Transaction() {
                         }}
                       >
                         {p.status === "pending" ? (
-                        <span style={{ color: "orange" }}>Pending</span>
+                          <span style={{ color: "orange" }}>Pending</span>
                         ) : p.status === "progress" ? (
-                        <span style={{ color: "blue" }}>Progress</span>
+                          <span style={{ color: "blue" }}>Progress</span>
                         ) : p.status === "cancel" ? (
-                         <span style={{ color: "red" }}>Cancel</span>
+                          <span style={{ color: "red" }}>Cancel</span>
                         ) : p.status === "complete" ? (
                           <span style={{ color: "green" }}>Complete</span>
                         ) : (
