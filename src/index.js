@@ -16,9 +16,11 @@ root.render(
     <Router>
       <CartProvider>
         <UserContextProvider>
-          <QueryClientProvider client={client}>
-            <App />
-          </QueryClientProvider>
+          <LoadingContext>
+            <QueryClientProvider client={client}>
+              <App />
+            </QueryClientProvider>
+          </LoadingContext>
         </UserContextProvider>
       </CartProvider>
     </Router>
