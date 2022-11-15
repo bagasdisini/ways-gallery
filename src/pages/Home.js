@@ -5,6 +5,7 @@ import { API, setAuthToken } from "../config/api";
 import Form from "react-bootstrap/Form";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { LoadingContext } from "../context/LoadingContext";
 import Dropdown from "react-bootstrap/Dropdown";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useQuery } from "react-query";
@@ -13,8 +14,9 @@ function Page() {
   const navigate = useNavigate();
 
   const [state, dispatch] = useContext(UserContext);
+  const [stateLoad, dispatchLoad] = useContext(LoadingContext);
 
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
 
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -25,7 +27,13 @@ function Page() {
   }, []);
 
   let { data: post2 } = useQuery("posttwCache", async () => {
+    dispatchLoad({
+      type: "LOAD_ERROR",
+    });
     const response = await API.get("/posts");
+    dispatchLoad({
+      type: "LOAD_SUCCESS",
+    });
     return response.data.data;
   });
 
@@ -36,7 +44,6 @@ function Page() {
   return (
     <div>
       <NavBar />
-
       <div
         className="mx-auto"
         style={{ height: "90%", width: "80%", marginTop: "30px" }}
@@ -72,7 +79,7 @@ function Page() {
                 borderStyle: "none",
                 borderRadius: "6px",
               }}
-              onChange={(e)=> setQuery(e.target.value)}
+              onChange={(e) => setQuery(e.target.value)}
             />
           </InputGroup>
         </div>
@@ -86,7 +93,6 @@ function Page() {
                 ? o
                 : o.title.toLocaleLowerCase().includes(query);
             })
-
             .map((p) =>
               p?.userId?.id == filter ? (
                 <div
@@ -96,6 +102,7 @@ function Page() {
                     navigate(`/detail-post/${p.id}`);
                   }}
                 >
+                  {stateLoad}
                   {p?.image1 ? (
                     <img
                       src={p.image1}
