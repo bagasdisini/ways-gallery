@@ -6,13 +6,11 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { LoadingContext } from "../context/LoadingContext";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const [state, dispatch] = useContext(UserContext);
-  const [stateLoad, dispatchLoad] = useContext(LoadingContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,14 +19,7 @@ function Detail() {
 
   let { id } = useParams();
   let { data: post, refetch } = useQuery("posttCache", async () => {
-    dispatchLoad({
-      type: "LOAD_ERROR",
-    });
     const response = await API.get("/post/" + id);
-
-    dispatchLoad({
-      type: "LOAD_SUCCESS",
-    });
     return response.data.data;
   });
 
@@ -97,7 +88,6 @@ function Detail() {
       >
         <div className="d-flex align-items-center justify-content-between my-4">
           <div className="d-flex align-items-center">
-            {stateLoad}
             <img
               src={
                 post?.userId?.image === ""

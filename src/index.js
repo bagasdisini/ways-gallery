@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserContextProvider } from "./context/UserContext";
-import { LoadingContextProvider } from "./context/LoadingContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
@@ -17,11 +16,9 @@ root.render(
     <Router>
       <CartProvider>
         <UserContextProvider>
-          <LoadingContextProvider>
-            <QueryClientProvider client={client}>
-              <App />
-            </QueryClientProvider>
-          </LoadingContextProvider>
+          <QueryClientProvider client={client}>
+            <App />
+          </QueryClientProvider>
         </UserContextProvider>
       </CartProvider>
     </Router>
