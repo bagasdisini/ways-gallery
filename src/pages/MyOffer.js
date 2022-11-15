@@ -222,7 +222,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        <Moment format="DDDD/MMM/YYYY">{p.startDate}</Moment>
+                        <Moment format="DD/MMM/YYYY">{p.startDate}</Moment>
                       </td>
                       <td
                         style={{
@@ -231,7 +231,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.endDate}
+                        <Moment format="DD/MMM/YYYY">{p.endDate}</Moment>
                       </td>
                       <td
                         style={{
