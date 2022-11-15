@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 import { SpinnerCircular } from "spinners-react";
 
 export const LoadingContext = createContext();
@@ -33,8 +33,8 @@ const reducer = (state, action) => {
   }
 };
 
-export const UserContextProvider = ({ children }) => {
-  const [stateLoad, dispatchLoad] = useReducer(reducer, initialState);
+export const LoadingContextProvider = ({ children }) => {
+  const [stateLoad, dispatchLoad] = useReducer(reducer);
 
   return (
     <LoadingContext.Provider value={[stateLoad, dispatchLoad]}>
