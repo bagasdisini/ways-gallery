@@ -11,6 +11,8 @@ import Pending from "../assets/pending.png";
 import Sukses from "../assets/sukses.png";
 import Button from "react-bootstrap/Button";
 import Cancel from "../assets/cancel.png";
+import toRupiah from "@develoka/angka-rupiah-js";
+import Moment from "react-moment";
 
 function Transaction() {
   useEffect(() => {
@@ -157,7 +159,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.startDate}
+                        <Moment format="DD/MMM/YYYY">{p.startDate}</Moment>
                       </td>
                       <td
                         style={{
@@ -166,7 +168,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.endDate}
+                        <Moment format="DD/MMM/YYYY">{p.endDate}</Moment>
                       </td>
                       <td
                         style={{
@@ -175,7 +177,7 @@ function Transaction() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {p.price}
+                        {toRupiah(p.price, { dot: ",", floatingPoint: 0 })}
                       </td>
                       <td
                         style={{
